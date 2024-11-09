@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Maple Odyssey</title>
     <link rel="shortcut icon" type="image/jpg"
-        href="https://th.bing.com/th/id/R.d49c1f6284534cb0bf7c31811b5cc51e?rik=aAQR6LxaAVc1Ag&riu=http%3a%2f%2fclipart-library.com%2fimages_k%2fmaple-leaf-transparent-background%2fmaple-leaf-transparent-background-14.jpg&ehk=9muDuq%2forcbgFyk9eIwa6xA1cVUFBIo%2b0Fw3%2f4KmkOQ%3d&risl=&pid=ImgRaw&r=0" />
+        href="https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/30666/leaf-2-clipart-md.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&family=Press+Start+2P&display=swap"
@@ -89,14 +89,9 @@
         }
 
         .header {
-            background: linear-gradient(135deg,
-                    #505254,
-                    #121212),
-                url('/api/placeholder/1920/400') center/cover;
-            min-height: 200px;
-            /* Reduced from 300px */
+            background: linear-gradient(135deg, #505254, #121212);
+            min-height: 250px;
             padding: 2rem 1rem;
-            /* Reduced from 3rem */
             text-align: center;
             position: relative;
             overflow: hidden;
@@ -104,6 +99,147 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
+        }
+
+        /* Animated background effect */
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(80, 82, 84, 0.4) 0%, transparent 40%),
+                radial-gradient(circle at 80% 50%, rgba(50, 47, 54, 0.4) 0%, transparent 40%);
+            animation: gradientMove 15s ease-in-out infinite;
+            z-index: 1;
+        }
+
+        /* Floating particles */
+        .particles-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            z-index: 2;
+        }
+
+        .particle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: float 8s infinite;
+        }
+
+        .header h1 {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 3;
+            text-shadow: 
+                0 0 10px rgba(80, 82, 84, 0.5),
+                0 0 20px rgba(80, 82, 84, 0.3),
+                0 0 30px rgba(80, 82, 84, 0.2);
+            animation: titlePulse 4s ease-in-out infinite;
+            background: linear-gradient(45deg, #ffffff, #b8b8b8);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 3;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease-out forwards 0.5s;
+        }
+
+        /* Animations */
+        @keyframes gradientMove {
+            0%, 100% {
+                transform: translate(0, 0);
+            }
+            25% {
+                transform: translate(-10px, 10px);
+            }
+            50% {
+                transform: translate(10px, -10px);
+            }
+            75% {
+                transform: translate(-10px, -10px);
+            }
+        }
+
+        @keyframes titlePulse {
+            0%, 100% {
+                transform: scale(1);
+                filter: brightness(1);
+            }
+            50% {
+                transform: scale(1.02);
+                filter: brightness(1.2);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) translateX(0);
+                opacity: 0;
+            }
+            25% {
+                opacity: 0.5;
+            }
+            50% {
+                transform: translateY(-100px) translateX(50px);
+                opacity: 0.8;
+            }
+            75% {
+                opacity: 0.5;
+            }
+            100% {
+                transform: translateY(-200px) translateX(-50px);
+                opacity: 0;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .header {
+                min-height: 200px;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .header p {
+                font-size: 1rem;
+                padding: 0 1rem;
+            }
         }
 
         .header h1 {
@@ -376,6 +512,7 @@
 
 <body>
     <header class="header">
+        <div class="particles-container" id="particlesContainer"></div>
         <h1>Maple Odyssey</h1>
         <p>Browse our top picked games.</p>
     </header>
@@ -654,6 +791,18 @@
         const closeButton = document.querySelector('.close-button');
         const searchBar = document.querySelector('.search-bar');
 
+        const particlesContainer = document.getElementById('particlesContainer');
+        const particleCount = 20;
+
+        for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = `${Math.random() * 100}%`;
+            particle.style.top = `${Math.random() * 100}%`;
+            particle.style.animationDelay = `${Math.random() * 5}s`;
+            particlesContainer.appendChild(particle);
+        }
+
         searchBar.addEventListener('input', (e) => {
             const searchTerm = e.target.value.toLowerCase();
             gameCards.forEach(card => {
@@ -693,7 +842,7 @@
                 closeGame();
             }
         });
-
+        
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && gameFrame.style.display === 'block') {
                 closeGame();
