@@ -12,13 +12,13 @@
             --primary-color: #7047EB;
             --secondary-color: #2D3250;
             --background-dark: #121212;
-            --card-bg: #1E1E1E;
+            --card-bg: rgba(30, 30, 30, 0.4);
             --text-primary: #FFFFFF;
             --text-secondary: #B8B8B8;
             --accent-color: #FF6B6B;
             --glow-color: #7047EB80;
         }
-
+        
         * {
             margin: 0;
             padding: 0;
@@ -30,6 +30,16 @@
             color: var(--text-primary);
             font-family: 'Poppins', sans-serif;
             line-height: 1.6;
+            min-height: 100vh;
+            background: linear-gradient(45deg, #121212, #1a1a1a, #242424);
+            background-size: 200% 200%;
+            animation: gradientBG 15s ease infinite;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         .header {
@@ -37,6 +47,7 @@
             padding: 2rem 1rem;
             text-align: center;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
         }
 
         .header h1 {
@@ -67,9 +78,10 @@
             font-size: 1.1rem;
             border: 2px solid var(--secondary-color);
             border-radius: 25px;
-            background-color: var(--card-bg);
+            background-color: rgba(30, 30, 30, 0.6);
             color: var(--text-primary);
             transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
         }
 
         .search-bar:focus {
@@ -94,7 +106,9 @@
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
             position: relative;
-            border: 2px solid transparent;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
         }
 
         .game-card::before {
@@ -105,10 +119,14 @@
             right: 0;
             bottom: 0;
             border-radius: 15px;
-            background: transparent;
+            background: radial-gradient(
+                circle at center,
+                rgba(112, 71, 235, 0.1) 0%,
+                transparent 70%
+            );
+            opacity: 0;
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            pointer-events: none;
-            z-index: -1;
+            z-index: 1;
         }
 
         .game-card:hover {
@@ -116,18 +134,11 @@
             border-color: var(--primary-color);
             box-shadow: 
                 0 0 20px var(--glow-color),
-                0 0 40px var(--glow-color),
-                inset 0 0 15px var(--glow-color);
-            backdrop-filter: blur(5px);
+                0 0 40px var(--glow-color);
         }
 
         .game-card:hover::before {
-            background: radial-gradient(
-                circle at center,
-                transparent 0%,
-                var(--glow-color) 100%
-            );
-            opacity: 0.15;
+            opacity: 1;
         }
 
         .game-card img {
@@ -136,6 +147,8 @@
             object-fit: cover;
             border-bottom: 3px solid var(--primary-color);
             transition: all 0.5s ease;
+            position: relative;
+            z-index: 2;
         }
 
         .game-card:hover img {
@@ -145,7 +158,10 @@
         .game-info {
             padding: 15px;
             position: relative;
-            z-index: 1;
+            z-index: 2;
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
         }
 
         .game-title {
@@ -174,7 +190,6 @@
             text-shadow: 0 0 5px var(--glow-color);
         }
 
-        /* Rest of the existing styles remain the same */
         .game-frame {
             display: none;
             position: fixed;
@@ -184,7 +199,7 @@
             height: 100%;
             background-color: rgba(0, 0, 0, 0.95);
             z-index: 1000;
-            backdrop-filter: blur(5px);
+            backdrop-filter: blur(10px);
         }
 
         .game-container {
@@ -192,10 +207,11 @@
             width: 90%;
             height: 90%;
             margin: 2% auto;
-            background-color: var(--card-bg);
+            background-color: rgba(30, 30, 30, 0.8);
             border-radius: 20px;
             padding: 20px;
             box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
         }
 
         .close-button {
@@ -211,6 +227,7 @@
             font-family: 'Poppins', sans-serif;
             font-weight: 600;
             transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
         }
 
         .close-button:hover {
@@ -240,22 +257,14 @@
         }
     </style>
 </head>
-<!-- Rest of the HTML remains exactly the same -->
-<body>
-    <!-- Previous HTML content remains unchanged -->
-    <!-- The rest of your HTML code stays exactly the same -->
-</body>
-</html>
-    </style>
-</head>
 <body>
     <header class="header">
         <h1>Maple/Haven</h1>
-        <p>Your Gateway to better class</p>
+        <p>Your Gateway to a better class</p>
     </header>
 
     <div class="search-container">
-        <input type="text" class="search-bar" placeholder="Search games...">
+        <input type="text" class="search-bar" placeholder="Search games or categories...">
     </div>
 
     <div class="game-grid">
@@ -346,7 +355,6 @@
         const closeButton = document.querySelector('.close-button');
         const searchBar = document.querySelector('.search-bar');
 
-        // Search functionality
         searchBar.addEventListener('input', (e) => {
             const searchTerm = e.target.value.toLowerCase();
             gameCards.forEach(card => {
@@ -378,6 +386,18 @@
             if (e.target === gameFrame) {
                 closeGame();
             }
+        });
+
+        // Add escape key functionality
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && gameFrame.style.display === 'block') {
+                closeGame();
+            }
+        });
+
+        // Add loading indicator functionality
+        gameIframe.addEventListener('load', () => {
+            gameIframe.style.opacity = '1';
         });
     </script>
 </body>
