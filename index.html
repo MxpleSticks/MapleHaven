@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Maple Odyssey</title>
-    <link rel="shortcut icon" type="image/jpg" href="https://www.pngkey.com/png/full/58-588050_maple-leaf-png-hd-red-maple-leafs-png.png"/>
+    <link rel="shortcut icon" type="image/jpg"
+        href="https://www.pngkey.com/png/full/58-588050_maple-leaf-png-hd-red-maple-leafs-png.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&family=Press+Start+2P&display=swap"
+        rel="stylesheet">
     <style>
         :root {
             --primary-color: #505254;
@@ -19,11 +22,45 @@
             --accent-color: #ff4444;
             --glow-color: #50525480;
         }
-        
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+        }
+
+        html {
+            height: 100%;
+            overflow: hidden;
+        }
+
+        body {
+            height: 100%;
+            overflow-y: auto;
+            overflow-x: hidden;
+            background-color: var(--background-dark);
+            color: var(--text-primary);
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(45deg, #121212, #1a1a1a, #242424);
+            background-size: 200% 200%;
+            animation: gradientBG 15s ease infinite;
+            position: fixed;
+            width: 100%;
+        }
+
+        #content-wrapper {
+            height: 100%;
+            overflow-y: auto;
+            overflow-x: hidden;
+            position: absolute;
+            width: 100%;
+            top: 0;
+            left: 0;
+        }
+
+        ::-webkit-scrollbar {
+            display: none;
         }
 
         body {
@@ -38,20 +75,28 @@
         }
 
         @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
         }
 
         .header {
-            background: linear-gradient(
-                135deg, 
-                #505254, 
-                #121212
-            ),
-            url('/api/placeholder/1920/400') center/cover;
-            min-height: 200px; /* Reduced from 300px */
-            padding: 2rem 1rem; /* Reduced from 3rem */
+            background: linear-gradient(135deg,
+                    #505254,
+                    #121212),
+                url('/api/placeholder/1920/400') center/cover;
+            min-height: 200px;
+            /* Reduced from 300px */
+            padding: 2rem 1rem;
+            /* Reduced from 3rem */
             text-align: center;
             position: relative;
             overflow: hidden;
@@ -66,7 +111,7 @@
             font-size: 3.5rem;
             font-weight: 700;
             margin-bottom: 1rem;
-            text-shadow: 
+            text-shadow:
                 3px 3px 0px rgba(0, 0, 0, 0.2),
                 0 0 15px rgba(255, 77, 110, 0);
             letter-spacing: 2px;
@@ -86,12 +131,15 @@
         /* Media query adjustments */
         @media (max-width: 768px) {
             .header {
-                min-height: 150px; /* Reduced from 250px */
-                padding: 1.5rem 1rem; /* Reduced from 2rem */
+                min-height: 150px;
+                /* Reduced from 250px */
+                padding: 1.5rem 1rem;
+                /* Reduced from 2rem */
             }
 
             .header h1 {
-                font-size: 1.5rem; /* Reduced from 1.8rem */
+                font-size: 1.5rem;
+                /* Reduced from 1.8rem */
             }
 
             .header p {
@@ -156,11 +204,9 @@
             right: 0;
             bottom: 0;
             border-radius: 12px;
-            background: radial-gradient(
-                circle at center,
-                rgba(112, 71, 235, 0.1) 0%,
-                transparent 70%
-            );
+            background: radial-gradient(circle at center,
+                    rgba(112, 71, 235, 0.1) 0%,
+                    transparent 70%);
             opacity: 0;
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             z-index: 1;
@@ -169,7 +215,7 @@
         .game-card:hover {
             transform: translateY(-5px);
             border-color: var(--primary-color);
-            box-shadow: 
+            box-shadow:
                 0 0 15px var(--glow-color),
                 0 0 30px var(--glow-color);
         }
@@ -306,14 +352,20 @@
             border-radius: 10px;
         }
 
+        body.game-open {
+            overflow: hidden;
+        }
+
         @media (max-width: 768px) {
             .header h1 {
                 font-size: 1.8rem;
             }
+
             .game-grid {
                 grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
                 padding: 20px;
             }
+
             .search-bar {
                 font-size: 1rem;
                 padding: 10px 15px;
@@ -321,6 +373,7 @@
         }
     </style>
 </head>
+
 <body>
     <header class="header">
         <h1>Maple Odyssey</h1>
@@ -334,7 +387,8 @@
     <div class="game-grid">
         <!-- Game 1 -->
         <div class="game-card" data-game-url="https://viberverse.github.io/games/basket-random/game.html">
-            <img src="https://play-lh.googleusercontent.com/gP8T5Z1O-ngxIloiwcBZzrzyLPYDp0R_1BDNKUDZboIRPVImeyWI8-7aExvB9gAGNKc" alt="Random Basketball">
+            <img src="https://play-lh.googleusercontent.com/gP8T5Z1O-ngxIloiwcBZzrzyLPYDp0R_1BDNKUDZboIRPVImeyWI8-7aExvB9gAGNKc"
+                alt="Random Basketball">
             <div class="game-info">
                 <div class="game-title">Random Basketball</div>
                 <div class="game-category">Sports</div>
@@ -343,7 +397,8 @@
 
         <!-- Game 2 -->
         <div class="game-card" data-game-url="https://viberverse.github.io/games/big-tower-tiny-square/game.html">
-            <img src="https://images.crazygames.com/big-tower-tiny-square/20210326104458/big-tower-tiny-square-cover?auto=format,compress&q=75&cs=strip" alt="Random Basketball">
+            <img src="https://images.crazygames.com/big-tower-tiny-square/20210326104458/big-tower-tiny-square-cover?auto=format,compress&q=75&cs=strip"
+                alt="Random Basketball">
             <div class="game-info">
                 <div class="game-title">big tower tiny square</div>
                 <div class="game-category">Skill</div>
@@ -352,7 +407,8 @@
 
         <!-- Game 3 -->
         <div class="game-card" data-game-url="https://viberverse.github.io/games/fnaf/game.html">
-            <img src="https://assets1.ignimgs.com/2020/02/04/five-nights-at-freddys-1---button-2020-1580781479002.jpg" alt="">
+            <img src="https://assets1.ignimgs.com/2020/02/04/five-nights-at-freddys-1---button-2020-1580781479002.jpg"
+                alt="">
             <div class="game-info">
                 <div class="game-title">Five Nights at Freddy's</div>
                 <div class="game-category">Horror</div>
@@ -370,7 +426,8 @@
 
         <!-- Game 5 -->
         <div class="game-card" data-game-url="https://viberverse.github.io/games/bacon-may-die/game.html">
-            <img src="https://i0.wp.com/mixfriv.com/wp-content/uploads/2022/02/Bacon-May-Die.png?fit=512%2C512&ssl=1" alt="">
+            <img src="https://i0.wp.com/mixfriv.com/wp-content/uploads/2022/02/Bacon-May-Die.png?fit=512%2C512&ssl=1"
+                alt="">
             <div class="game-info">
                 <div class="game-title">Bacon May Die</div>
                 <div class="game-category">Action</div>
@@ -387,7 +444,8 @@
         </div>
 
         <div class="game-card" data-game-url="https://viberverse.github.io/games/cookie-clicker/game.html">
-            <img src="https://play-lh.googleusercontent.com/OssE3ON9WsLZedOF39UCgtIHcRYfV0OqQS9O78LfmRdxSyKdHX52G2OFa0LkG6D-k9w" alt="">
+            <img src="https://play-lh.googleusercontent.com/OssE3ON9WsLZedOF39UCgtIHcRYfV0OqQS9O78LfmRdxSyKdHX52G2OFa0LkG6D-k9w"
+                alt="">
             <div class="game-info">
                 <div class="game-title">Cookie Clicker</div>
                 <div class="game-category">Idle</div>
@@ -674,4 +732,5 @@
         }
     </script>
 </body>
+
 </html>
