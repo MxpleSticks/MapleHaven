@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MapleHaven</title>
+    <title>Maple Odyssey</title>
+    <link rel="shortcut icon" type="image/jpg" href="https://www.pngkey.com/png/full/58-588050_maple-leaf-png-hd-red-maple-leafs-png.png"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&family=Press+Start+2P&display=swap" rel="stylesheet">
@@ -61,9 +62,10 @@
         }
 
         .header h1 {
-            font-family: 'Press Start 2P', cursive;
-            font-size: 2.5rem; /* Reduced from 3.5rem */
-            margin-bottom: 1rem; /* Reduced from 1.5rem */
+            font-family: 'Libre Baskerville', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
             text-shadow: 
                 3px 3px 0px rgba(0, 0, 0, 0.2),
                 0 0 15px rgba(255, 77, 110, 0);
@@ -72,13 +74,13 @@
         }
 
         .header p {
-            font-size: 1.1rem; /* Reduced from 1.3rem */
+            font-size: 1.1rem;
             color: var(--text-secondary);
             max-width: 600px;
             margin: 0 auto;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
             position: relative;
-            padding-bottom: 1.5rem; /* Reduced from 2rem */
+            padding-bottom: 1.5rem;
         }
 
         /* Media query adjustments */
@@ -127,16 +129,16 @@
 
         .game-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 25px;
-            padding: 40px;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 20px;
             max-width: 1400px;
             margin: 0 auto;
         }
 
         .game-card {
             background-color: var(--card-bg);
-            border-radius: 15px;
+            border-radius: 12px;
             overflow: hidden;
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
@@ -153,7 +155,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            border-radius: 15px;
+            border-radius: 12px;
             background: radial-gradient(
                 circle at center,
                 rgba(112, 71, 235, 0.1) 0%,
@@ -165,11 +167,11 @@
         }
 
         .game-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-5px);
             border-color: var(--primary-color);
             box-shadow: 
-                0 0 20px var(--glow-color),
-                0 0 40px var(--glow-color);
+                0 0 15px var(--glow-color),
+                0 0 30px var(--glow-color);
         }
 
         .game-card:hover::before {
@@ -178,9 +180,9 @@
 
         .game-card img {
             width: 100%;
-            height: 180px;
+            height: 140px;
             object-fit: cover;
-            border-bottom: 3px solid var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
             transition: all 0.5s ease;
             position: relative;
             z-index: 2;
@@ -191,7 +193,7 @@
         }
 
         .game-info {
-            padding: 15px;
+            padding: 12px;
             position: relative;
             z-index: 2;
             background: rgba(0, 0, 0, 0.2);
@@ -200,9 +202,9 @@
         }
 
         .game-title {
-            font-size: 1.2rem;
+            font-size: 1rem;
             font-weight: 600;
-            margin-bottom: 5px;
+            margin-bottom: 4px;
             color: var(--text-primary);
             transition: all 0.3s ease;
         }
@@ -213,7 +215,7 @@
         }
 
         .game-category {
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             color: var(--text-secondary);
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -225,6 +227,7 @@
             text-shadow: 0 0 5px var(--glow-color);
         }
 
+        /* Rest of the styles remain the same */
         .game-frame {
             display: none;
             position: fixed;
@@ -235,6 +238,32 @@
             background-color: rgba(0, 0, 0, 0.95);
             z-index: 1000;
             backdrop-filter: blur(10px);
+            opacity: 0;
+            transition: opacity 0.3s ease-out;
+        }
+
+        .game-frame.visible {
+            opacity: 1;
+        }
+
+        .game-container {
+            position: relative;
+            width: 90%;
+            height: 90%;
+            margin: 2% auto;
+            background-color: rgba(30, 30, 30, 0.8);
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            transform: scale(0.95);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .game-frame.visible .game-container {
+            transform: scale(1);
+            opacity: 1;
         }
 
         .game-container {
@@ -294,8 +323,8 @@
 </head>
 <body>
     <header class="header">
-        <h1>Maple/Haven</h1>
-        <p>Over 2 games!</p>
+        <h1>Maple Odyssey</h1>
+        <p>Browse our top picked games.</p>
     </header>
 
     <div class="search-container">
@@ -357,6 +386,30 @@
             </div>
         </div>
 
+        <div class="game-card" data-game-url="https://viberverse.github.io/games/cookie-clicker/game.html">
+            <img src="https://play-lh.googleusercontent.com/OssE3ON9WsLZedOF39UCgtIHcRYfV0OqQS9O78LfmRdxSyKdHX52G2OFa0LkG6D-k9w" alt="">
+            <div class="game-info">
+                <div class="game-title">Cookie Clicker</div>
+                <div class="game-category">Idle</div>
+            </div>
+        </div>
+
+        <div class="game-card" data-game-url="https://viberverse.github.io/games/scrap-metal/game.html">
+            <img src="https://viberverse.github.io/games/scrap-metal/img/splash.png" alt="">
+            <div class="game-info">
+                <div class="game-title">Scrap Metal</div>
+                <div class="game-category">Car</div>
+            </div>
+        </div>
+
+        <div class="game-card" data-game-url="https://viberverse.github.io/games/funny-shooter-2/game.html">
+            <img src="https://viberverse.github.io/games/funny-shooter-2/thumb.png" alt="">
+            <div class="game-info">
+                <div class="game-title">Funny Shooter 2</div>
+                <div class="game-category">Action</div>
+            </div>
+        </div>
+
         <!-- Game 7 -->
         <div class="game-card" data-game-url="https://viberverse.github.io/games/subway-surfers-ny/game.html">
             <img src="https://ubgfun.github.io/running/subway-surfers-nyc/logo.png" alt="">
@@ -364,16 +417,185 @@
                 <div class="game-title">Subway Surfers New York</div>
                 <div class="game-category">Skill</div>
             </div>
+
         </div>
 
-        <!-- Game 8 -->
-        <div class="game-card" data-game-url="https://viberverse.github.io/games/scrap-metal/game.html">
-            <img src="https://viberverse.github.io/games/scrap-metal/img/splash.png" alt="Soccer Stars">
+        <div class="game-card" data-game-url="https://viberverse.github.io/games/blumgi-slime/game.html">
+            <img src="https://viberverse.github.io/games/blumgi-slime/logo.jpg" alt="">
             <div class="game-info">
-                <div class="game-title">Scrap Metal</div>
+                <div class="game-title">Blumgi Slime</div>
+                <div class="game-category">Skill</div>
+            </div>
+        </div>
+
+        <div class="game-card" data-game-url="https://viberverse.github.io/games/tiny-fishing/game.html">
+            <img src="https://viberverse.github.io/games/tiny-fishing/tiny-fishing.png" alt="">
+            <div class="game-info">
+                <div class="game-title">Tiny Fishing</div>
+                <div class="game-category">idle</div>
+            </div>
+        </div>
+
+        <div class="game-card" data-game-url="https://viberverse.github.io/games/minecraft-18/game.html">
+            <img src="https://viberverse.github.io/games/minecraft-15/splash.jpeg" alt="">
+            <div class="game-info">
+                <div class="game-title">Minecraft 1.8</div>
+                <div class="game-category">Adventure</div>
+            </div>
+        </div>
+
+        <div class="game-card" data-game-url="https://viberverse.github.io/games/crossy-road/game.html">
+            <img src="https://viberverse.github.io/games/crossy-road/crossyroad.png" alt="">
+            <div class="game-info">
+                <div class="game-title">Crossy Road</div>
+                <div class="game-category">Skill</div>
+            </div>
+        </div>
+
+        <div class="game-card" data-game-url="https://viberverse.github.io/games/drift-boss/game.html">
+            <img src="https://viberverse.github.io/games/drift-boss/drift-boss.png" alt="">
+            <div class="game-info">
+                <div class="game-title">Drift Boss</div>
                 <div class="game-category">Car</div>
             </div>
         </div>
+
+        <div class="game-card" data-game-url="https://viberverse.github.io/games/drive-mad/game.html">
+            <img src="https://viberverse.github.io/games/drive-mad/logo.jpg" alt="">
+            <div class="game-info">
+                <div class="game-title">Drive Mad</div>
+                <div class="game-category">Car</div>
+            </div>
+        </div>
+
+        <div class="game-card" data-game-url="https://viberverse.github.io/games/soccer-skills/game.html">
+            <img src="https://viberverse.github.io/games/soccer-skills/splash.png" alt="">
+            <div class="game-info">
+                <div class="game-title">Soccer Euro Cup</div>
+                <div class="game-category">Sports</div>
+            </div>
+        </div>
+
+        <div class="game-card" data-game-url="https://viberverse.github.io/games/toss-the-turtle/game.html">
+            <img src="https://viberverse.github.io/games/toss-the-turtle/tosstheturtle.png" alt="">
+            <div class="game-info">
+                <div class="game-title">Toss The Turtle</div>
+                <div class="game-category">Action</div>
+            </div>
+        </div>
+
+        <div class="game-card" data-game-url="https://viberverse.github.io/games/stickman-hook/game.html">
+            <img src="https://viberverse.github.io/games/stickman-hook/unnamed.jpg" alt="">
+            <div class="game-info">
+                <div class="game-title">Stickman Hook</div>
+                <div class="game-category">Casual</div>
+            </div>
+        </div>
+
+        <div class="game-card" data-game-url="https://viberverse.github.io/games/stick-duel-battle/game.html">
+            <img src="https://viberverse.github.io/games/stick-duel-battle/512x512.jpg" alt="">
+            <div class="game-info">
+                <div class="game-title">Stick Duel Battle</div>
+                <div class="game-category">2-Player</div>
+            </div>
+        </div>
+
+        <div class="game-card" data-game-url="https://html5.gamedistribution.com/827331e3831541baa8ee51d63d6ceec2/">
+            <img src="https://img.gamedistribution.com/827331e3831541baa8ee51d63d6ceec2-512x384.jpg" alt="">
+            <div class="game-info">
+                <div class="game-title">Blockapolypse Zombie Shooter</div>
+                <div class="game-category">Action</div>
+            </div>
+        </div>
+
+        <div class="game-card" data-game-url="https://viberverse.github.io/games/retro-bowl/">
+            <img src="https://viberverse.github.io/games/retro-bowl/img/icon.jpg" alt="">
+            <div class="game-info">
+                <div class="game-title">Retro Bowl</div>
+                <div class="game-category">Sports</div>
+            </div>
+        </div>
+
+        <div class="game-card" data-game-url="https://viberverse.github.io/games/rise-higher/">
+            <img src="https://viberverse.github.io/games/rise-higher/RiseHigher.png" alt="">
+            <div class="game-info">
+                <div class="game-title">Rise Higher</div>
+                <div class="game-category">Casual</div>
+            </div>
+        </div>
+
+        <div class="game-card" data-game-url="https://viberverse.github.io/games/cluster-rush/">
+            <img src="https://viberverse.github.io/games/cluster-rush/splash.png" alt="">
+            <div class="game-info">
+                <div class="game-title">Cluster Rush</div>
+                <div class="game-category">Action</div>
+            </div>
+        </div>
+
+        <div class="game-card" data-game-url="https://viberverse.github.io/games/basketball-stars/">
+            <img src="https://viberverse.github.io/games/basketball-stars/assets/images/basketball-stars.png" alt="">
+            <div class="game-info">
+                <div class="game-title">Basketball Stars</div>
+                <div class="game-category">Sports</div>
+            </div>
+        </div>
+
+        <div class="game-card" data-game-url="https://viberverse.github.io/games/territorial/">
+            <img src="https://viberverse.github.io/games/territorial/Territorial.png" alt="">
+            <div class="game-info">
+                <div class="game-title">territorial</div>
+                <div class="game-category">Strategy</div>
+            </div>
+        </div>
+
+        <div class="game-card" data-game-url="https://viberverse.github.io/games/learn-to-fly/">
+            <img src="https://viberverse.github.io/games/learn-to-fly/learntofly.png" alt="">
+            <div class="game-info">
+                <div class="game-title">Learn To Fly</div>
+                <div class="game-category">Casual</div>
+            </div>
+        </div>
+
+        <div class="game-card" data-game-url="https://viberverse.github.io/games/iron-snout/">
+            <img src="https://viberverse.github.io/games/iron-snout/IronSnout.png" alt="">
+            <div class="game-info">
+                <div class="game-title">Iron Snout</div>
+                <div class="game-category">Action</div>
+            </div>
+        </div>
+
+        <div class="game-card" data-game-url="https://viberverse.github.io/games/idle-mining/">
+            <img src="https://www.marketjs.com/item/idle-mining-empire/idle-mining-empire.jpg" alt="">
+            <div class="game-info">
+                <div class="game-title">Idle Mining</div>
+                <div class="game-category">Idle</div>
+            </div>
+        </div>
+
+        <div class="game-card" data-game-url="https://viberverse.github.io/games/idle-breakout/">
+            <img src="https://viberverse.github.io/games/idle-breakout/img/thumbnail.png" alt="">
+            <div class="game-info">
+                <div class="game-title">Idle Breakout</div>
+                <div class="game-category">Idle</div>
+            </div>
+        </div>
+
+        <div class="game-card" data-game-url="https://viberverse.github.io/games/stick-merge/">
+            <img src="https://viberverse.github.io/games/stick-merge/splash.png" alt="">
+            <div class="game-info">
+                <div class="game-title">Stick Merge</div>
+                <div class="game-category">Casual</div>
+            </div>
+        </div>
+
+        <div class="game-card" data-game-url="https://viberverse.github.io/games/tag/">
+            <img src="https://viberverse.github.io/games/tag/logo.jpg" alt="">
+            <div class="game-info">
+                <div class="game-title">Tag</div>
+                <div class="game-category">2-4 Player</div>
+            </div>
+        </div>
+
     </div>
 
     <div class="game-frame" id="gameFrame">
@@ -405,14 +627,21 @@
                 const gameUrl = card.dataset.gameUrl;
                 gameIframe.src = gameUrl;
                 gameFrame.style.display = 'block';
+                // Trigger reflow to ensure the transition works
+                gameFrame.offsetHeight;
+                gameFrame.classList.add('visible');
                 document.body.style.overflow = 'hidden';
             });
         });
 
         function closeGame() {
-            gameFrame.style.display = 'none';
-            gameIframe.src = '';
-            document.body.style.overflow = 'auto';
+            gameFrame.classList.remove('visible');
+            // Wait for the animation to complete before hiding
+            setTimeout(() => {
+                gameFrame.style.display = 'none';
+                gameIframe.src = '';
+                document.body.style.overflow = 'auto';
+            }, 300); // Match this with the transition duration
         }
 
         closeButton.addEventListener('click', closeGame);
@@ -423,26 +652,25 @@
             }
         });
 
-        // Add escape key functionality
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && gameFrame.style.display === 'block') {
                 closeGame();
             }
         });
 
-        // Add loading indicator functionality
         gameIframe.addEventListener('load', () => {
             gameIframe.style.opacity = '1';
         });
 
-
         const particles = document.querySelector('.particles');
-        for (let i = 0; i < 20; i++) {
-            const particle = document.createElement('div');
-            particle.className = 'particle';
-            particle.style.left = Math.random() * 100 + '%';
-            particle.style.animationDelay = Math.random() * 15 + 's';
-            particles.appendChild(particle);
+        if (particles) {
+            for (let i = 0; i < 20; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 15 + 's';
+                particles.appendChild(particle);
+            }
         }
     </script>
 </body>
