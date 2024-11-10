@@ -309,6 +309,41 @@
             transform: translateY(-2px);
         }
 
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .status-dot.inactive {
+            background-color: #ff4444;
+            box-shadow: 0 0 8px #ff4444,
+                       0 0 12px #ff4444;
+        }
+
+        .status-dot.active {
+            background-color: #4CAF50;
+            box-shadow: 0 0 8px #4CAF50,
+                       0 0 12px #4CAF50;
+        }
+
+        /* Update the link description to accommodate the dot */
+        .link-description {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+        }
+
         /* Adjust header to account for control center */
         .header {
             margin-top: 64px;
@@ -818,55 +853,82 @@
     <div class="links-grid">
         <div class="link-card">
             <h3 class="link-title">RammerHead</h3>
-            <p class="link-description">Inactive</p>
+            <p class="link-description">
+                <span class="status-dot inactive"></span>
+                Inactive
+            </p>
             <a href="#" class="link-button">View Proxy</a>
         </div>
         
         <div class="link-card">
             <h3 class="link-title">Dogev4</h3>
-            <p class="link-description">Inactive</p>
+            <p class="link-description">
+                <span class="status-dot inactive"></span>
+                Inactive
+            </p>
             <a href="#" class="link-button">View Proxy</a>
         </div>
 
         <div class="link-card">
             <h3 class="link-title">Interstellar</h3>
-            <p class="link-description">Inactive</p>
+            <p class="link-description">
+                <span class="status-dot inactive"></span>
+                Inactive
+            </p>
             <a href="#" class="link-button">View Proxy</a>
         </div>
 
         <div class="link-card">
             <h3 class="link-title">Kazwire</h3>
-            <p class="link-description">Inactive</p>
+            <p class="link-description">
+                <span class="status-dot inactive"></span>
+                Inactive
+            </p>
             <a href="#" class="link-button">View Proxy</a>
         </div>
 
         <div class="link-card">
             <h3 class="link-title">Art School</h3>
-            <p class="link-description">Inactive</p>
+            <p class="link-description">
+                <span class="status-dot inactive"></span>
+                Inactive
+            </p>
             <a href="#" class="link-button">View Proxy</a>
         </div>
 
         <div class="link-card">
             <h3 class="link-title">Shadow Tabbed</h3>
-            <p class="link-description">Active</p>
+            <p class="link-description">
+                <span class="status-dot active"></span>
+                Active
+            </p>
             <a href="https://math.jophey.net" class="link-button">View Proxy</a>
         </div>
 
         <div class="link-card">
             <h3 class="link-title">Shadow Tabbed</h3>
-            <p class="link-description">Active</p>
+            <p class="link-description">
+                <span class="status-dot active"></span>
+                Active
+            </p>
             <a href="https://math.cloudbarfbag.com" class="link-button">View Proxy</a>
         </div>
 
         <div class="link-card">
             <h3 class="link-title">Utopia</h3>
-            <p class="link-description">Inactive</p>
+            <p class="link-description">
+                <span class="status-dot inactive"></span>
+                Inactive
+            </p>
             <a href="#" class="link-button">View Proxy</a>
         </div>
 
         <div class="link-card">
             <h3 class="link-title">Emerald</h3>
-            <p class="link-description">Inactive</p>
+            <p class="link-description">
+                <span class="status-dot inactive"></span>
+                Inactive
+            </p>
             <a href="#" class="link-button">View Proxy</a>
         </div>
         
