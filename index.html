@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Maple Odyssey</title>
-    <link rel="shortcut icon" type="image/jpg"
-        href="favicon.png" />
+    <link rel="shortcut icon" type="image/jpg" href="favicon.png" />
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Poppins:wght@400;600;800&family=Press+Start+2P&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&family=Press+Start+2P&display=swap"
@@ -130,10 +130,18 @@
         }
 
         .logo-text {
-            font-family: 'Press Start 2P', cursive;
+            font-family: 'Libre Baskerville', serif;
             font-size: 1.2rem;
             color: var(--text-primary);
             text-shadow: 0 0 10px rgba(80, 82, 84, 0.3);
+        }
+
+        /* Update the mobile version as well */
+        @media (max-width: 768px) {
+            .logo-text {
+                font-size: 1rem;
+                font-family: 'Libre Baskerville', serif;
+            }
         }
 
         .control-buttons {
@@ -649,14 +657,7 @@
 
     <div class="control-center">
         <div class="logo-container">
-            <svg class="logo" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="white" stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round" />
-                <path d="M2 17L12 22L22 17" stroke="white" stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round" />
-                <path d="M2 12L12 17L22 12" stroke="white" stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round" />
-            </svg>
+            <img src="favicon.png" class="logo" alt="">
             <span class="logo-text">Maple Odyssey</span>
         </div>
         <div class="control-buttons">
@@ -1079,7 +1080,6 @@
             </div>
         </div>
 
-
     </div>
 
     <div class="game-frame" id="gameFrame">
@@ -1177,11 +1177,11 @@
 
     searchInput.addEventListener('input', (e) => {
         const searchTerm = e.target.value.toLowerCase();
-        
+
         linkCards.forEach(card => {
             const title = card.querySelector('.link-title').textContent.toLowerCase();
             const description = card.querySelector('.link-description').textContent.toLowerCase();
-            
+
             if (title.includes(searchTerm) || description.includes(searchTerm)) {
                 card.style.display = 'flex';
             } else {
