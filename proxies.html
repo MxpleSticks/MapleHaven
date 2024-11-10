@@ -1,1 +1,889 @@
-<h1>Hello im here for proxies</h1>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maple Odyssey</title>
+    <link rel="shortcut icon" type="image/jpg"
+        href="https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/30666/leaf-2-clipart-md.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&family=Press+Start+2P&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #505254;
+            --secondary-color: #322f36;
+            --background-dark: #121212;
+            --card-bg: rgba(30, 30, 30, 0.4);
+            --text-primary: #FFFFFF;
+            --text-secondary: #B8B8B8;
+            --accent-color: #ff4444;
+            --glow-color: #50525480;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            height: 100%;
+            overflow: hidden;
+        }
+
+        body {
+            height: 100%;
+            overflow-y: auto;
+            overflow-x: hidden;
+            background-color: var(--background-dark);
+            color: var(--text-primary);
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(45deg, #121212, #1a1a1a, #242424);
+            background-size: 200% 200%;
+            animation: gradientBG 15s ease infinite;
+            position: fixed;
+            width: 100%;
+        }
+
+        body {
+            background-color: var(--background-dark);
+            color: var(--text-primary);
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            min-height: 100vh;
+            background: linear-gradient(45deg, #121212, #1a1a1a, #242424);
+            background-size: 200% 200%;
+            animation: gradientBG 15s ease infinite;
+        }
+
+        .control-center {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 64px;
+            background: rgba(18, 18, 18, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 24px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo {
+            width: 40px;
+            height: 40px;
+        }
+
+        .logo-text {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1.2rem;
+            color: var(--text-primary);
+        }
+
+        .search-container {
+            max-width: 600px;
+            margin: 100px auto 40px;
+            padding: 0 20px;
+        }
+
+        .search-bar {
+            width: 100%;
+            padding: 15px 25px;
+            border: none;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
+            font-size: 1rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .search-bar:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+        }
+
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .link-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .link-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--glow-color);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .link-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+
+        .link-description {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+        }
+
+        .link-button {
+            display: inline-block;
+            padding: 8px 16px;
+            background: var(--glow-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .link-button:hover {
+            background: #ff6666;
+            transform: translateY(-2px);
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @media (max-width: 768px) {
+            .links-grid {
+                grid-template-columns: 1fr;
+                padding: 15px;
+            }
+
+            .search-container {
+                margin: 80px auto 30px;
+            }
+
+            .logo-text {
+                font-size: 1rem;
+            }
+        }
+
+        .control-button {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 8px;
+            background: var(--primary-color);
+            color: var(--text-primary);
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none !important;
+            /* Added to forcefully remove underline */
+            display: inline-block;
+        }
+
+        .control-button:hover {
+            background: var(--accent-color);
+            transform: translateY(-2px);
+            text-decoration: none;
+            /* Ensure no underline on hover */
+        }
+
+        .control-button:visited {
+            text-decoration: none;
+            /* Ensure no underline for visited links */
+        }
+
+        #content-wrapper {
+            height: 100%;
+            overflow-y: auto;
+            overflow-x: hidden;
+            position: absolute;
+            width: 100%;
+            top: 0;
+            left: 0;
+        }
+
+        ::-webkit-scrollbar {
+            display: none;
+        }
+
+        body {
+            background-color: var(--background-dark);
+            color: var(--text-primary);
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            min-height: 100vh;
+            background: linear-gradient(45deg, #121212, #1a1a1a, #242424);
+            background-size: 200% 200%;
+            animation: gradientBG 15s ease infinite;
+        }
+
+        .control-center {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 64px;
+            background: rgba(18, 18, 18, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 24px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo {
+            width: 40px;
+            height: 40px;
+        }
+
+        .logo-text {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1.2rem;
+            color: var(--text-primary);
+            text-shadow: 0 0 10px rgba(80, 82, 84, 0.3);
+        }
+
+        .control-buttons {
+            display: flex;
+            gap: 12px;
+        }
+
+        .control-button {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 8px;
+            background: var(--primary-color);
+            color: var(--text-primary);
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .control-button:hover {
+            background: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        /* Adjust header to account for control center */
+        .header {
+            margin-top: 64px;
+        }
+
+        /* Adjust content wrapper for fixed header */
+        #content-wrapper {
+            padding-top: 64px;
+        }
+
+        @media (max-width: 768px) {
+            .logo-text {
+                font-size: 0.9rem;
+            }
+
+            .control-button {
+                padding: 8px 16px;
+                border: none;
+                border-radius: 8px;
+                background: var(--primary-color);
+                color: var(--text-primary);
+                font-family: 'Poppins', sans-serif;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                text-decoration: none;
+                display: inline-block;
+                /* Added for anchor tag */
+            }
+
+            .control-button:hover {
+                background: var(--accent-color);
+                transform: translateY(-2px);
+            }
+        }
+
+        @keyframes gradientBG {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .header {
+            background: linear-gradient(135deg, #505254, #121212);
+            min-height: 250px;
+            padding: 2rem 1rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Animated background effect */
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(circle at 20% 50%, rgba(80, 82, 84, 0.4) 0%, transparent 40%),
+                radial-gradient(circle at 80% 50%, rgba(50, 47, 54, 0.4) 0%, transparent 40%);
+            animation: gradientMove 15s ease-in-out infinite;
+            z-index: 1;
+        }
+
+        /* Floating particles */
+        .particles-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            z-index: 2;
+        }
+
+        .particle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: float 8s infinite;
+        }
+
+        .header h1 {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 3;
+            text-shadow:
+                0 0 10px rgba(80, 82, 84, 0.5),
+                0 0 20px rgba(80, 82, 84, 0.3),
+                0 0 30px rgba(80, 82, 84, 0.2);
+            animation: titlePulse 4s ease-in-out infinite;
+            background: linear-gradient(45deg, #ffffff, #b8b8b8);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 3;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease-out forwards 0.5s;
+        }
+
+        /* Animations */
+        @keyframes gradientMove {
+
+            0%,
+            100% {
+                transform: translate(0, 0);
+            }
+
+            25% {
+                transform: translate(-10px, 10px);
+            }
+
+            50% {
+                transform: translate(10px, -10px);
+            }
+
+            75% {
+                transform: translate(-10px, -10px);
+            }
+        }
+
+        @keyframes titlePulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+                filter: brightness(1);
+            }
+
+            50% {
+                transform: scale(1.02);
+                filter: brightness(1.2);
+            }
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0) translateX(0);
+                opacity: 0;
+            }
+
+            25% {
+                opacity: 0.5;
+            }
+
+            50% {
+                transform: translateY(-100px) translateX(50px);
+                opacity: 0.8;
+            }
+
+            75% {
+                opacity: 0.5;
+            }
+
+            100% {
+                transform: translateY(-200px) translateX(-50px);
+                opacity: 0;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .header {
+                min-height: 200px;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .header p {
+                font-size: 1rem;
+                padding: 0 1rem;
+            }
+        }
+
+        .header h1 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow:
+                3px 3px 0px rgba(0, 0, 0, 0.2),
+                0 0 15px rgba(255, 77, 110, 0);
+            letter-spacing: 2px;
+            animation: titleFloat 6s ease-in-out infinite;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            position: relative;
+            padding-bottom: 1.5rem;
+        }
+
+        /* Media query adjustments */
+        @media (max-width: 768px) {
+            .header {
+                min-height: 150px;
+                /* Reduced from 250px */
+                padding: 1.5rem 1rem;
+                /* Reduced from 2rem */
+            }
+
+            .header h1 {
+                font-size: 1.5rem;
+                /* Reduced from 1.8rem */
+            }
+
+            .header p {
+                font-size: 1rem;
+                padding-bottom: 1rem;
+            }
+        }
+
+
+        .search-container {
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .search-bar {
+            width: 100%;
+            max-width: 600px;
+            padding: 12px 20px;
+            font-size: 1.1rem;
+            border: 2px solid var(--secondary-color);
+            border-radius: 25px;
+            background-color: rgba(30, 30, 30, 0.6);
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .search-bar:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 10px #121212;
+        }
+
+        .game-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(185px, 1fr));
+            gap: 10px;
+            padding: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .game-card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .game-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 12px;
+            background: radial-gradient(circle at center,
+                    rgba(112, 71, 235, 0.1) 0%,
+                    transparent 70%);
+            opacity: 0;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1;
+        }
+
+        .game-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
+            box-shadow:
+                0 0 15px var(--glow-color),
+                0 0 30px var(--glow-color);
+        }
+
+        .game-card:hover::before {
+            opacity: 1;
+        }
+
+        .game-card img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            border-bottom: 2px solid var(--primary-color);
+            transition: all 0.5s ease;
+            position: relative;
+            z-index: 2;
+        }
+
+        .game-card:hover img {
+            filter: brightness(1.2) contrast(1.1);
+        }
+
+        .game-info {
+            padding: 12px;
+            position: relative;
+            z-index: 2;
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+
+        .game-title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+
+        .game-card:hover .game-title {
+            color: #fff;
+            text-shadow: 0 0 8px var(--glow-color);
+        }
+
+        .game-category {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .game-card:hover .game-category {
+            color: var(--primary-color);
+            text-shadow: 0 0 5px var(--glow-color);
+        }
+
+        /* Rest of the styles remain the same */
+        .game-frame {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            opacity: 0;
+            transition: opacity 0.3s ease-out;
+        }
+
+        .game-frame.visible {
+            opacity: 1;
+        }
+
+        .game-container {
+            position: relative;
+            width: 90%;
+            height: 90%;
+            margin: 2% auto;
+            background-color: rgba(30, 30, 30, 0.8);
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            transform: scale(0.95);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .game-frame.visible .game-container {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .game-container {
+            position: relative;
+            width: 90%;
+            height: 90%;
+            margin: 2% auto;
+            background-color: rgba(30, 30, 30, 0.8);
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+        }
+
+        .close-button {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .close-button:hover {
+            background: #ff4444;
+            transform: scale(1.05);
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 10px;
+        }
+
+        body.game-open {
+            overflow: hidden;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .game-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                padding: 20px;
+            }
+
+            .search-bar {
+                font-size: 1rem;
+                padding: 10px 15px;
+            }
+        }
+
+        
+    </style>
+</head>
+
+<body>
+
+    <div class="control-center">
+        <div class="logo-container">
+            <svg class="logo" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="white" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                <path d="M2 17L12 22L22 17" stroke="white" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                <path d="M2 12L12 17L22 12" stroke="white" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+            </svg>
+            <span class="logo-text">Maple Odyssey</span>
+        </div>
+        <div class="control-buttons">
+            <a href="index.html" class="control-button">Games</a>
+            <a href="proxies.html" class="control-button">Proxies</a>
+        </div>
+    </div>
+
+    <div class="search-container">
+        <input type="text" class="search-bar" placeholder="Search links..." id="searchInput">
+    </div>
+
+    <div class="links-grid">
+        <div class="link-card">
+            <h3 class="link-title">RammerHead</h3>
+            <p class="link-description">Active</p>
+            <a href="#" class="link-button">View Proxy</a>
+        </div>
+        
+        <div class="link-card">
+            <h3 class="link-title">Dogev4</h3>
+            <p class="link-description">Inactive</p>
+            <a href="#" class="link-button">View Proxy</a>
+        </div>
+
+        <div class="link-card">
+            <h3 class="link-title">Interstellar</h3>
+            <p class="link-description">Active</p>
+            <a href="#" class="link-button">View Proxy</a>
+        </div>
+
+        <div class="link-card">
+            <h3 class="link-title">Kazwire</h3>
+            <p class="link-description">Inactive</p>
+            <a href="#" class="link-button">View Proxy</a>
+        </div>
+
+        <div class="link-card">
+            <h3 class="link-title">ArtSchool</h3>
+            <p class="link-description">Active</p>
+            <a href="#" class="link-button">View Proxy</a>
+        </div>
+
+        <div class="link-card">
+            <h3 class="link-title">Shadow Tabbed</h3>
+            <p class="link-description">Inactive</p>
+            <a href="#" class="link-button">View Proxy</a>
+        </div>
+
+        <div class="link-card">
+            <h3 class="link-title">Utopia</h3>
+            <p class="link-description">Inactive</p>
+            <a href="#" class="link-button">View Proxy</a>
+        </div>
+
+        <div class="link-card">
+            <h3 class="link-title">Emerald</h3>
+            <p class="link-description">Inactive</p>
+            <a href="#" class="link-button">View Proxy</a>
+        </div>
+        
+    </div>
+
+    <script>
+        // Search functionality
+        const searchInput = document.getElementById('searchInput');
+        const linkCards = document.querySelectorAll('.link-card');
+
+        searchInput.addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+
+            linkCards.forEach(card => {
+                const title = card.querySelector('.link-title').textContent.toLowerCase();
+                const description = card.querySelector('.link-description').textContent.toLowerCase();
+                
+                if (title.includes(searchTerm) || description.includes(searchTerm)) {
+                    card.style.display = '';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    </script>
+
+</body>   
