@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Maple Odyssey</title>
     <link rel="shortcut icon" type="image/jpg"
-        href="favicon.png" />
+        href="https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/30666/leaf-2-clipart-md.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&family=Press+Start+2P&display=swap"
@@ -1170,5 +1170,25 @@
         }
     </script>
 </body>
+
+<script>
+    const searchInput = document.querySelector('.search-input');
+    const linkCards = document.querySelectorAll('.link-card');
+
+    searchInput.addEventListener('input', (e) => {
+        const searchTerm = e.target.value.toLowerCase();
+        
+        linkCards.forEach(card => {
+            const title = card.querySelector('.link-title').textContent.toLowerCase();
+            const description = card.querySelector('.link-description').textContent.toLowerCase();
+            
+            if (title.includes(searchTerm) || description.includes(searchTerm)) {
+                card.style.display = 'flex';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    });
+</script>
 
 </html>
