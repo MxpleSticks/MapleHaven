@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Maple Odyssey</title>
     <link rel="shortcut icon" type="image/jpg" href="favicon.png" />
-    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Poppins:wght@400;600;800&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Poppins:wght@400;600;800&family=Press+Start+2P&display=swap"
+        rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&family=Press+Start+2P&display=swap"
@@ -47,6 +49,32 @@
             animation: gradientBG 15s ease infinite;
             position: fixed;
             width: 100%;
+        }
+
+        .game-rating {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 0.9rem;
+            color: #ffd700;
+        }
+
+        @keyframes glow {
+
+            0%,
+            100% {
+                text-shadow: 0 0 10px #ffd700, 0 0 20px #ffd700, 0 0 30px #ffa500, 0 0 40px #ffa500;
+            }
+
+            50% {
+                text-shadow: 0 0 20px #ffd700, 0 0 30px #ffd700, 0 0 40px #ffa500, 0 0 50px #ffa500;
+            }
+        }
+
+        .star-icon {
+            color: #ffd700;
+            text-shadow: 0 0 10px #ffd700, 0 0 20px #ffd700, 0 0 30px #ffa500, 0 0 40px #ffa500;
+            animation: glow 2s infinite alternate;
         }
 
         .control-button {
@@ -514,7 +542,7 @@
         }
 
         .game-card:hover img {
-            filter: brightness(1.2) contrast(1.1);
+            filter: brightness(1.1) contrast(1);
         }
 
         .game-info {
@@ -545,6 +573,7 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             transition: all 0.3s ease;
+            margin-bottom: 4px;
         }
 
         .game-card:hover .game-category {
@@ -684,15 +713,18 @@
             <div class="game-info">
                 <div class="game-title">Random Basketball</div>
                 <div class="game-category">Sports</div>
+                <span class="star-icon">★</span>
+                <span>5.0</span>
             </div>
         </div>
 
-        <!-- Game 2 -->
         <div class="game-card" data-game-url="https://viberverse.github.io/games/big-tower-tiny-square/game.html">
             <img src="https://viberverse.github.io/games/big-tower-tiny-square/images.png" alt="Random Basketball">
             <div class="game-info">
-                <div class="game-title">big tower tiny square</div>
+                <div class="game-title">big tower TS</div>
                 <div class="game-category">Skill</div>
+                <span class="star-icon">★</span>
+                <span>4.2</span>
             </div>
         </div>
 
@@ -701,8 +733,10 @@
             <img src="https://assets1.ignimgs.com/2020/02/04/five-nights-at-freddys-1---button-2020-1580781479002.jpg"
                 alt="">
             <div class="game-info">
-                <div class="game-title">Five Nights at Freddy's</div>
+                <div class="game-title">FNAF 1</div>
                 <div class="game-category">Horror</div>
+                <span class="star-icon">★</span>
+                <span>4.1</span>
             </div>
         </div>
 
@@ -712,16 +746,8 @@
             <div class="game-info">
                 <div class="game-title">8 Ball</div>
                 <div class="game-category">Sports</div>
-            </div>
-        </div>
-
-        <!-- Game 5 -->
-        <div class="game-card" data-game-url="https://viberverse.github.io/games/bacon-may-die/game.html">
-            <img src="https://i0.wp.com/mixfriv.com/wp-content/uploads/2022/02/Bacon-May-Die.png?fit=512%2C512&ssl=1"
-                alt="">
-            <div class="game-info">
-                <div class="game-title">Bacon May Die</div>
-                <div class="game-category">Action</div>
+                <span class="star-icon">★</span>
+                <span>4.8</span>
             </div>
         </div>
 
@@ -730,6 +756,8 @@
             <div class="game-info">
                 <div class="game-title">Slope 2</div>
                 <div class="game-category">Skill</div>
+                <span class="star-icon">★</span>
+                <span>5.0</span>
             </div>
         </div>
 
@@ -739,6 +767,8 @@
             <div class="game-info">
                 <div class="game-title">Cookie Clicker</div>
                 <div class="game-category">Idle</div>
+                <span class="star-icon">★</span>
+                <span>4.7</span>
             </div>
         </div>
 
@@ -747,6 +777,8 @@
             <div class="game-info">
                 <div class="game-title">Scrap Metal</div>
                 <div class="game-category">Car</div>
+                <span class="star-icon">★</span>
+                <span>4.5</span>
             </div>
         </div>
 
@@ -755,6 +787,8 @@
             <div class="game-info">
                 <div class="game-title">Funny Shooter 2</div>
                 <div class="game-category">Action</div>
+                <span class="star-icon">★</span>
+                <span>4.3</span>
             </div>
         </div>
 
@@ -762,10 +796,11 @@
         <div class="game-card" data-game-url="https://viberverse.github.io/games/subway-surfers-ny/game.html">
             <img src="https://viberverse.github.io/games/subway-surfers/img/splash.jpg" alt="">
             <div class="game-info">
-                <div class="game-title">Subway Surfers New York</div>
+                <div class="game-title">Subway Surfers NY</div>
                 <div class="game-category">Skill</div>
+                <span class="star-icon">★</span>
+                <span>4.1</span>
             </div>
-
         </div>
 
         <div class="game-card" data-game-url="https://viberverse.github.io/games/blumgi-slime/game.html">
@@ -773,6 +808,8 @@
             <div class="game-info">
                 <div class="game-title">Blumgi Slime</div>
                 <div class="game-category">Skill</div>
+                <span class="star-icon">★</span>
+                <span>4.8</span>
             </div>
         </div>
 
@@ -781,6 +818,8 @@
             <div class="game-info">
                 <div class="game-title">Tiny Fishing</div>
                 <div class="game-category">idle</div>
+                <span class="star-icon">★</span>
+                <span>4.9</span>
             </div>
         </div>
 
@@ -789,6 +828,8 @@
             <div class="game-info">
                 <div class="game-title">Minecraft 1.8</div>
                 <div class="game-category">Adventure</div>
+                <span class="star-icon">★</span>
+                <span>5.0</span>
             </div>
         </div>
 
@@ -797,6 +838,8 @@
             <div class="game-info">
                 <div class="game-title">Crossy Road</div>
                 <div class="game-category">Casual</div>
+                <span class="star-icon">★</span>
+                <span>4.3</span>
             </div>
         </div>
 
@@ -805,6 +848,8 @@
             <div class="game-info">
                 <div class="game-title">Drift Boss</div>
                 <div class="game-category">Car</div>
+                <span class="star-icon">★</span>
+                <span>5.0</span>
             </div>
         </div>
 
@@ -813,6 +858,8 @@
             <div class="game-info">
                 <div class="game-title">Drive Mad</div>
                 <div class="game-category">Car</div>
+                <span class="star-icon">★</span>
+                <span>5.0</span>
             </div>
         </div>
 
@@ -821,6 +868,8 @@
             <div class="game-info">
                 <div class="game-title">Soccer Euro Cup</div>
                 <div class="game-category">Sports</div>
+                <span class="star-icon">★</span>
+                <span>5.0</span>
             </div>
         </div>
 
@@ -829,6 +878,8 @@
             <div class="game-info">
                 <div class="game-title">Toss The Turtle</div>
                 <div class="game-category">Casual</div>
+                <span class="star-icon">★</span>
+                <span>4.9</span>
             </div>
         </div>
 
@@ -837,6 +888,8 @@
             <div class="game-info">
                 <div class="game-title">Stickman Hook</div>
                 <div class="game-category">Casual</div>
+                <span class="star-icon">★</span>
+                <span>4.4</span>
             </div>
         </div>
 
@@ -845,6 +898,8 @@
             <div class="game-info">
                 <div class="game-title">Stick Duel Battle</div>
                 <div class="game-category">2-Player</div>
+                <span class="star-icon">★</span>
+                <span>4.2</span>
             </div>
         </div>
 
@@ -853,6 +908,8 @@
             <div class="game-info">
                 <div class="game-title">Retro Bowl</div>
                 <div class="game-category">Sports</div>
+                <span class="star-icon">★</span>
+                <span>5.0</span>
             </div>
         </div>
 
@@ -861,6 +918,8 @@
             <div class="game-info">
                 <div class="game-title">Rise Higher</div>
                 <div class="game-category">Casual</div>
+                <span class="star-icon">★</span>
+                <span>4.3</span>
             </div>
         </div>
 
@@ -869,6 +928,8 @@
             <div class="game-info">
                 <div class="game-title">Cluster Rush</div>
                 <div class="game-category">Action</div>
+                <span class="star-icon">★</span>
+                <span>4.1</span>
             </div>
         </div>
 
@@ -877,6 +938,8 @@
             <div class="game-info">
                 <div class="game-title">Basketball Stars</div>
                 <div class="game-category">Sports</div>
+                <span class="star-icon">★</span>
+                <span>4.7</span>
             </div>
         </div>
 
@@ -885,6 +948,8 @@
             <div class="game-info">
                 <div class="game-title">territorial</div>
                 <div class="game-category">Strategy</div>
+                <span class="star-icon">★</span>
+                <span>4.9</span>
             </div>
         </div>
 
@@ -893,6 +958,8 @@
             <div class="game-info">
                 <div class="game-title">Learn To Fly</div>
                 <div class="game-category">Casual</div>
+                <span class="star-icon">★</span>
+                <span>5.0</span>
             </div>
         </div>
 
@@ -901,6 +968,8 @@
             <div class="game-info">
                 <div class="game-title">Iron Snout</div>
                 <div class="game-category">Action</div>
+                <span class="star-icon">★</span>
+                <span>4.9</span>
             </div>
         </div>
 
@@ -909,6 +978,8 @@
             <div class="game-info">
                 <div class="game-title">Idle Breakout</div>
                 <div class="game-category">Idle</div>
+                <span class="star-icon">★</span>
+                <span>4.8</span>
             </div>
         </div>
 
@@ -917,6 +988,8 @@
             <div class="game-info">
                 <div class="game-title">Stick Merge</div>
                 <div class="game-category">Casual</div>
+                <span class="star-icon">★</span>
+                <span>4.0</span>
             </div>
         </div>
 
@@ -925,6 +998,8 @@
             <div class="game-info">
                 <div class="game-title">Tag</div>
                 <div class="game-category">2-4 Player</div>
+                <span class="star-icon">★</span>
+                <span>4.5</span>
             </div>
         </div>
 
@@ -933,6 +1008,8 @@
             <div class="game-info">
                 <div class="game-title">Bloons TD 4</div>
                 <div class="game-category">Strategy</div>
+                <span class="star-icon">★</span>
+                <span>4.3</span>
             </div>
         </div>
 
@@ -941,6 +1018,8 @@
             <div class="game-info">
                 <div class="game-title">BitLife</div>
                 <div class="game-category">Strategy</div>
+                <span class="star-icon">★</span>
+                <span>4.6</span>
             </div>
         </div>
 
@@ -949,6 +1028,8 @@
             <div class="game-info">
                 <div class="game-title">Rooftop Snipers</div>
                 <div class="game-category">Action</div>
+                <span class="star-icon">★</span>
+                <span>4.4</span>
             </div>
         </div>
 
@@ -957,6 +1038,8 @@
             <div class="game-info">
                 <div class="game-title">Tanuki Sunset</div>
                 <div class="game-category">Skill</div>
+                <span class="star-icon">★</span>
+                <span>4.7</span>
             </div>
         </div>
 
@@ -965,14 +1048,18 @@
             <div class="game-info">
                 <div class="game-title">My Rusty Submarine</div>
                 <div class="game-category">2-player</div>
+                <span class="star-icon">★</span>
+                <span>5.0</span>
             </div>
         </div>
 
         <div class="game-card" data-game-url="https://thewarriorcats.github.io/MKGBA2.0/launcher.html#simpsons">
             <img src="https://upload.wikimedia.org/wikipedia/en/b/b1/The_Simpsons_Road_Rage.jpg" alt="">
             <div class="game-info">
-                <div class="game-title">The Simpsons: Road Rage</div>
+                <div class="game-title">TS: Road Rage</div>
                 <div class="game-category">Adventure</div>
+                <span class="star-icon">★</span>
+                <span>4.8</span>
             </div>
         </div>
 
@@ -981,22 +1068,30 @@
             <div class="game-info">
                 <div class="game-title">Sonic Advance 2</div>
                 <div class="game-category">Adventure</div>
+                <span class="star-icon">★</span>
+                <span>4.7</span>
             </div>
         </div>
 
         <div class="game-card" data-game-url="https://thewarriorcats.github.io/MKGBA2.0/launcher.html#pokemonruby">
-            <img src="https://fs-prod-cdn.nintendo-europe.com/media/images/10_share_images/games_15/game_boy_advance_7/SI_GBA_PokemonRuby_enGB_image1600w.jpg" alt="">
+            <img src="https://fs-prod-cdn.nintendo-europe.com/media/images/10_share_images/games_15/game_boy_advance_7/SI_GBA_PokemonRuby_enGB_image1600w.jpg"
+                alt="">
             <div class="game-info">
                 <div class="game-title">Pokemon Ruby</div>
                 <div class="game-category">Adventure</div>
+                <span class="star-icon">★</span>
+                <span>4.6</span>
             </div>
         </div>
 
         <div class="game-card" data-game-url="https://thewarriorcats.github.io/MKGBA2.0/launcher.html#zelda_past">
-            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/2/21/The_Legend_of_Zelda_A_Link_to_the_Past_SNES_Game_Cover.jpg/330px-The_Legend_of_Zelda_A_Link_to_the_Past_SNES_Game_Cover.jpg" alt="">
+            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/2/21/The_Legend_of_Zelda_A_Link_to_the_Past_SNES_Game_Cover.jpg/330px-The_Legend_of_Zelda_A_Link_to_the_Past_SNES_Game_Cover.jpg"
+                alt="">
             <div class="game-info">
-                <div class="game-title">The Legend of Zelda: A Link to the Past</div>
+                <div class="game-title">A Link to the Past</div>
                 <div class="game-category">Adventure</div>
+                <span class="star-icon">★</span>
+                <span>4.4</span>
             </div>
         </div>
 
@@ -1005,6 +1100,8 @@
             <div class="game-info">
                 <div class="game-title">Pokemon Emerald</div>
                 <div class="game-category">Adventure</div>
+                <span class="star-icon">★</span>
+                <span>4.6</span>
             </div>
         </div>
 
@@ -1013,14 +1110,8 @@
             <div class="game-info">
                 <div class="game-title">Burrito Bison</div>
                 <div class="game-category">Casual</div>
-            </div>
-        </div>
-
-        <div class="game-card" data-game-url="https://tonymac129.github.io/macvg/projects/creativekillchamber/game.html">
-            <img src="https://tonymac129.github.io/macvg/projects/creativekillchamber/creativekillchamber.jpg" alt="">
-            <div class="game-info">
-                <div class="game-title">Creative Kill Chamber</div>
-                <div class="game-category">Action</div>
+                <span class="star-icon">★</span>
+                <span>4.9</span>
             </div>
         </div>
 
@@ -1029,6 +1120,8 @@
             <div class="game-info">
                 <div class="game-title">Deepest Sword</div>
                 <div class="game-category">Skill</div>
+                <span class="star-icon">★</span>
+                <span>4.5</span>
             </div>
         </div>
 
@@ -1037,6 +1130,8 @@
             <div class="game-info">
                 <div class="game-title">Duck Life 3</div>
                 <div class="game-category">Casual</div>
+                <span class="star-icon">★</span>
+                <span>5.0</span>
             </div>
         </div>
 
@@ -1045,14 +1140,19 @@
             <div class="game-info">
                 <div class="game-title">Push Your Luck</div>
                 <div class="game-category">Luck</div>
+                <span class="star-icon">★</span>
+                <span>4.2</span>
             </div>
         </div>
 
-        <div class="game-card" data-game-url="https://tonymac129.github.io/macvg/projects/tactical-weapon-pack-2/game.html">
+        <div class="game-card"
+            data-game-url="https://tonymac129.github.io/macvg/projects/tactical-weapon-pack-2/game.html">
             <img src="https://tonymac129.github.io/macvg/projects/tactical-weapon-pack-2/splash.jpg" alt="">
             <div class="game-info">
-                <div class="game-title">Tactical Weapon Pack 2</div>
+                <div class="game-title">TWP 2</div>
                 <div class="game-category">Casual</div>
+                <span class="star-icon">★</span>
+                <span>4.6</span>
             </div>
         </div>
 
@@ -1061,6 +1161,8 @@
             <div class="game-info">
                 <div class="game-title">sandboxels</div>
                 <div class="game-category">Casual</div>
+                <span class="star-icon">★</span>
+                <span>4.3</span>
             </div>
         </div>
 
@@ -1069,6 +1171,8 @@
             <div class="game-info">
                 <div class="game-title">Roper</div>
                 <div class="game-category">Skill</div>
+                <span class="star-icon">★</span>
+                <span>4.9</span>
             </div>
         </div>
 
@@ -1077,7 +1181,17 @@
             <div class="game-info">
                 <div class="game-title">Santy is Home</div>
                 <div class="game-category">Horror</div>
+                <span class="star-icon">★</span>
+                <span>4.0</span>
             </div>
+        </div>
+
+    </div>
+
+    <div class="game-frame" id="gameFrame">
+        <div class="game-container">
+            <button class="close-button">Close Game</button>
+            <iframe id="gameIframe" src="" allowfullscreen></iframe>
         </div>
 
     </div>
