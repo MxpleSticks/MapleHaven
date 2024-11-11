@@ -355,6 +355,47 @@
                 0 0 12px #4CAF50;
         }
 
+        .warning-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: -10px;
+            padding: 4px 8px;
+            border-radius: 4px;
+            background: rgba(255, 68, 68, 0.1);
+            font-size: 0.8rem;
+            color: #ff4444;
+            opacity: 0.9;
+            transition: all 0.3s ease;
+        }
+
+        .warning-container:hover {
+            opacity: 1;
+            background: rgba(255, 68, 68, 0.15);
+        }
+
+        .warning-icon {
+            width: 16px;
+            height: 16px;
+            animation: warningGlow 2s ease-in-out infinite;
+        }
+
+        .warning-text {
+            text-shadow: 0 0 8px rgba(255, 68, 68, 0.3);
+        }
+
+        @keyframes warningGlow {
+
+            0%,
+            100% {
+                filter: drop-shadow(0 0 2px rgba(255, 68, 68, 0.4));
+            }
+
+            50% {
+                filter: drop-shadow(0 0 6px rgba(255, 68, 68, 0.6));
+            }
+        }
+
         /* Update the link description to accommodate the dot */
         .link-description {
             display: flex;
@@ -1085,6 +1126,8 @@
         </div>
     </div>
 
+
+
     <div id="embedContainer" class="embed-frame">
         <button class="close-embed" onclick="closeEmbed()">Shut Down</button>
         <iframe id="proxyFrame" src=""></iframe>
@@ -1123,6 +1166,14 @@
         </div>
 
         <div class="link-card">
+            <div class="warning-container">
+                <svg class="warning-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 8.5V13.5" stroke="#ff4444" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M12 16.5V16.6" stroke="#ff4444" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#ff4444" stroke-width="2"/>
+                </svg>
+                <span class="warning-text">This Proxy may be unsafe</span>
+            </div>
             <h3 class="link-title">Dogev4</h3>
             <p class="link-description">
                 <span class="status-dot active"></span>
