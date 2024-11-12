@@ -484,314 +484,6 @@
             z-index: 1;
         }
 
-        /* Floating particles */
-        .particles-container {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            overflow: hidden;
-            z-index: 2;
-        }
-
-        .particle {
-            position: absolute;
-            width: 6px;
-            height: 6px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            pointer-events: none;
-            animation: float 8s infinite;
-        }
-
-        .header h1 {
-            font-family: 'Press Start 2P', cursive;
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            position: relative;
-            z-index: 3;
-            text-shadow:
-                0 0 10px rgba(80, 82, 84, 0.5),
-                0 0 20px rgba(80, 82, 84, 0.3),
-                0 0 30px rgba(80, 82, 84, 0.2);
-            animation: titlePulse 4s ease-in-out infinite;
-            background: linear-gradient(45deg, #ffffff, #b8b8b8);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .header p {
-            font-size: 1.2rem;
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 3;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 0.8s ease-out forwards 0.5s;
-        }
-
-        /* Animations */
-        @keyframes gradientMove {
-
-            0%,
-            100% {
-                transform: translate(0, 0);
-            }
-
-            25% {
-                transform: translate(-10px, 10px);
-            }
-
-            50% {
-                transform: translate(10px, -10px);
-            }
-
-            75% {
-                transform: translate(-10px, -10px);
-            }
-        }
-
-        @keyframes titlePulse {
-
-            0%,
-            100% {
-                transform: scale(1);
-                filter: brightness(1);
-            }
-
-            50% {
-                transform: scale(1.02);
-                filter: brightness(1.2);
-            }
-        }
-
-        @keyframes float {
-
-            0%,
-            100% {
-                transform: translateY(0) translateX(0);
-                opacity: 0;
-            }
-
-            25% {
-                opacity: 0.5;
-            }
-
-            50% {
-                transform: translateY(-100px) translateX(50px);
-                opacity: 0.8;
-            }
-
-            75% {
-                opacity: 0.5;
-            }
-
-            100% {
-                transform: translateY(-200px) translateX(-50px);
-                opacity: 0;
-            }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .header {
-                min-height: 200px;
-            }
-
-            .header h1 {
-                font-size: 2rem;
-            }
-
-            .header p {
-                font-size: 1rem;
-                padding: 0 1rem;
-            }
-        }
-
-        .header h1 {
-            font-family: 'Libre Baskerville', serif;
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            text-shadow:
-                3px 3px 0px rgba(0, 0, 0, 0.2),
-                0 0 15px rgba(255, 77, 110, 0);
-            letter-spacing: 2px;
-            animation: titleFloat 6s ease-in-out infinite;
-        }
-
-        .header p {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin: 0 auto;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-            position: relative;
-            padding-bottom: 1.5rem;
-        }
-
-        /* Media query adjustments */
-        @media (max-width: 768px) {
-            .header {
-                min-height: 150px;
-                /* Reduced from 250px */
-                padding: 1.5rem 1rem;
-                /* Reduced from 2rem */
-            }
-
-            .header h1 {
-                font-size: 1.5rem;
-                /* Reduced from 1.8rem */
-            }
-
-            .header p {
-                font-size: 1rem;
-                padding-bottom: 1rem;
-            }
-        }
-
-
-        .search-container {
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .search-bar {
-            width: 100%;
-            max-width: 600px;
-            padding: 12px 20px;
-            font-size: 1.1rem;
-            border: 2px solid var(--secondary-color);
-            border-radius: 25px;
-            background-color: rgba(30, 30, 30, 0.6);
-            color: var(--text-primary);
-            transition: all 0.3s ease;
-            backdrop-filter: blur(5px);
-        }
-
-        .search-bar:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 10px #121212;
-        }
-
-        .game-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(185px, 1fr));
-            gap: 10px;
-            padding: 20px;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .game-card {
-            background-color: var(--card-bg);
-            border-radius: 12px;
-            overflow: hidden;
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer;
-            position: relative;
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-        }
-
-        .game-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            border-radius: 12px;
-            background: radial-gradient(circle at center,
-                    rgba(112, 71, 235, 0.1) 0%,
-                    transparent 70%);
-            opacity: 0;
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 1;
-        }
-
-        .game-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary-color);
-            box-shadow:
-                0 0 15px var(--glow-color),
-                0 0 30px var(--glow-color);
-        }
-
-        .game-card:hover::before {
-            opacity: 1;
-        }
-
-        .game-card img {
-            width: 100%;
-            height: 140px;
-            object-fit: cover;
-            border-bottom: 2px solid var(--primary-color);
-            transition: all 0.5s ease;
-            position: relative;
-            z-index: 2;
-        }
-
-        .game-card:hover img {
-            filter: brightness(1.2) contrast(1.1);
-        }
-
-        .game-info {
-            padding: 12px;
-            position: relative;
-            z-index: 2;
-            background: rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
-        }
-
-        .game-title {
-            font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: 4px;
-            color: var(--text-primary);
-            transition: all 0.3s ease;
-        }
-
-        .game-card:hover .game-title {
-            color: #fff;
-            text-shadow: 0 0 8px var(--glow-color);
-        }
-
-        .game-category {
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-        }
-
-        .game-card:hover .game-category {
-            color: var(--primary-color);
-            text-shadow: 0 0 5px var(--glow-color);
-        }
-
         .control-button {
             position: relative !important;
             padding: 8px 16px !important;
@@ -1084,6 +776,77 @@
             }
         }
 
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .popup-content {
+            background: rgba(30, 30, 30, 0.9);
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+            animation: popupFadeIn 0.3s ease-out;
+        }
+
+        .popup-content p {
+            color: var(--text-primary);
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .popup-content button {
+            padding: 8px 24px;
+            margin: 0 8px;
+            border: none;
+            border-radius: 6px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .popup-content button:first-of-type {
+            background: var(--accent-color);
+            color: white;
+        }
+
+        .popup-content button:last-of-type {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
+        }
+
+        .popup-content button:hover {
+            transform: translateY(-2px);
+        }
+
+        @keyframes popupFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         iframe {
             width: 100%;
             height: 100%;
@@ -1126,7 +889,13 @@
         </div>
     </div>
 
-
+    <div id="confirmation-popup" class="popup-overlay">
+        <div class="popup-content">
+            <p>Are you sure you want to proceed?</p>
+            <button onclick="confirmAction()">Yes</button>
+            <button onclick="closePopup()">No</button>
+        </div>
+    </div>
 
     <div id="embedContainer" class="embed-frame">
         <button class="close-embed" onclick="closeEmbed()">Shut Down</button>
@@ -1168,9 +937,11 @@
         <div class="link-card">
             <div class="warning-container">
                 <svg class="warning-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 8.5V13.5" stroke="#ff4444" stroke-width="2" stroke-linecap="round"/>
-                    <path d="M12 16.5V16.6" stroke="#ff4444" stroke-width="2" stroke-linecap="round"/>
-                    <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#ff4444" stroke-width="2"/>
+                    <path d="M12 8.5V13.5" stroke="#ff4444" stroke-width="2" stroke-linecap="round" />
+                    <path d="M12 16.5V16.6" stroke="#ff4444" stroke-width="2" stroke-linecap="round" />
+                    <path
+                        d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+                        stroke="#ff4444" stroke-width="2" />
                 </svg>
                 <span class="warning-text">This Proxy may be Harmful or Untrustworthy.</span>
             </div>
@@ -1261,12 +1032,13 @@
         </div>
 
         <div class="link-card">
-            <h3 class="link-title">Emerald</h3>
+            <h3 class="link-title">RammerHead</h3>
             <p class="link-description">
-                <span class="status-dot inactive"></span>
-                Inactive
+                <span class="status-dot active"></span>
+                Active
             </p>
-            <a href="#" class="link-button">Inoperative</a>
+            <a href="https://disturbingthepeace.thebrittainlawfirm.com" class="link-button"
+                onclick="openEmbed(event, this.href)">Boot up Proxy</a>
         </div>
 
     </div>
@@ -1343,19 +1115,39 @@
             }, 1000);
         }
 
-        // Start cycling text when page loads
-        document.addEventListener('DOMContentLoaded', cycleLoadingText);
+        function showPopup(url) {
+            document.getElementById('confirmation-popup').style.display = 'flex';
+            // Store the URL to be used later
+            document.getElementById('confirmation-popup').dataset.pendingUrl = url;
+        }
 
-        // Update the link buttons to include loading elements
-        document.querySelectorAll('.link-button').forEach(button => {
-            if (!button.querySelector('.button-text')) {
-                const buttonText = button.textContent;
-                button.textContent = '';
-                button.innerHTML = `
-            <span class="button-text">${buttonText}</span>
-            <span class="button-loading"></span>
-        `;
-            }
+        function closePopup() {
+            document.getElementById('confirmation-popup').style.display = 'none';
+        }
+
+        function confirmAction() {
+            const popup = document.getElementById('confirmation-popup');
+            const url = popup.dataset.pendingUrl;
+            closePopup();
+            openEmbed(event, url);
+        }
+
+        // Start cycling text when page loads
+        document.addEventListener('DOMContentLoaded', function () {
+            const warnedCards = document.querySelectorAll('.link-card:has(.warning-container)');
+
+            warnedCards.forEach(card => {
+                const link = card.querySelector('.link-button');
+                const originalUrl = link.href;
+
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    showPopup(originalUrl);
+                });
+
+                // Remove the original onclick attribute
+                link.removeAttribute('onclick');
+            });
         });
 
         function closeEmbed() {
