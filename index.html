@@ -605,7 +605,7 @@
             background: linear-gradient(145deg, rgba(30, 30, 30, 0.9), rgba(20, 20, 20, 0.95));
             border-radius: 24px;
             padding: 24px;
-            box-shadow:
+            box-shadow: 
                 0 0 40px rgba(0, 0, 0, 0.5),
                 inset 0 0 2px rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
@@ -683,51 +683,7 @@
             border: none;
             border-radius: 12px;
             background: rgba(0, 0, 0, 0.3);
-            opacity: 0;
-            /* Initially hidden */
             transition: opacity 0.3s ease;
-        }
-
-        /* Ensure opacity is set to 1 when the game frame is visible */
-        .game-frame.visible iframe {
-            opacity: 1;
-        }
-
-        /* Loading state */
-        .game-frame.loading iframe {
-            opacity: 0;
-            /* Keep it hidden while loading */
-        }
-
-
-        /* Loading state */
-        .game-frame.loading iframe {
-            opacity: 0;
-        }
-
-        /* Loading spinner */
-        .loading-spinner {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 50px;
-            height: 50px;
-            border: 3px solid rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            border-top-color: #fff;
-            animation: spin 1s linear infinite;
-            display: none;
-        }
-
-        .game-frame.loading .loading-spinner {
-            display: block;
-        }
-
-        @keyframes spin {
-            to {
-                transform: translate(-50%, -50%) rotate(360deg);
-            }
         }
 
         /* Keep your existing media queries and add these new ones */
@@ -739,16 +695,16 @@
                 border-radius: 0;
                 padding: 16px;
             }
-
+            
             .game-header {
                 border-radius: 0;
                 height: 1px;
             }
-
+            
             .game-title {
                 font-size: 1rem;
             }
-
+            
             .game-frame iframe {
                 height: calc(100% - 50px);
                 margin-top: 50px;
@@ -1170,7 +1126,8 @@
         </div>
 
         <div class="game-card" data-game-url="https://thewarriorcats.github.io/MKGBA2.0/launcher.html#pokemonruby">
-            <img src="https://assets1.ignimgs.com/2019/05/17/pokemon-ruby---button-sm-1558057647902.jpg" alt="">
+            <img src="https://assets1.ignimgs.com/2019/05/17/pokemon-ruby---button-sm-1558057647902.jpg"
+                alt="">
             <div class="game-info">
                 <div class="game-title">Pokemon Ruby</div>
                 <div class="game-category">Adventure</div>
@@ -1317,16 +1274,16 @@
             card.addEventListener('click', () => {
                 const gameUrl = card.dataset.gameUrl;
                 const gameTitle = card.querySelector('.game-title').textContent;
-
+                
                 // Set the game title
                 document.querySelector('.game-title').textContent = gameTitle;
-
+                
                 // Show loading state
                 gameFrame.classList.add('loading');
                 gameFrame.style.display = 'block';
                 gameFrame.offsetHeight; // Force reflow
                 gameFrame.classList.add('visible');
-
+                
                 // Set iframe src
                 gameIframe.src = gameUrl;
                 document.body.style.overflow = 'hidden';
@@ -1372,7 +1329,7 @@
         gameIframe.addEventListener('load', () => {
             gameFrame.classList.remove('loading');
         });
-
+        
         const particles = document.querySelector('.particles');
         if (particles) {
             for (let i = 0; i < 20; i++) {
