@@ -104,27 +104,68 @@
         }
 
         .search-container {
-            max-width: 600px;
-            margin: 100px auto 40px;
-            padding: 0 20px;
+            padding: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            z-index: 10;
         }
 
         .search-bar {
             width: 100%;
-            padding: 15px 25px;
-            border: none;
+            max-width: 600px;
+            padding: 12px 20px;
+            font-size: 1.1rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: linear-gradient(145deg, rgba(30, 30, 30, 0.9), rgba(20, 20, 20, 0.95));
             border-radius: 12px;
-            background: rgba(255, 255, 255, 0.1);
             color: var(--text-primary);
-            font-size: 1rem;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            box-shadow:
+                0 4px 20px rgba(0, 0, 0, 0.3),
+                inset 0 0 2px rgba(255, 255, 255, 0.1);
+        }
+
+        .search-bar:hover {
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow:
+                0 6px 24px rgba(0, 0, 0, 0.4),
+                inset 0 0 2px rgba(255, 255, 255, 0.2);
+            transform: translateY(-1px);
         }
 
         .search-bar:focus {
             outline: none;
-            background: rgba(255, 255, 255, 0.15);
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow:
+                0 8px 32px rgba(0, 0, 0, 0.5),
+                inset 0 0 2px rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+            background: linear-gradient(145deg, rgba(35, 35, 35, 0.95), rgba(25, 25, 25, 0.98));
+        }
+
+        .search-bar::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+            transition: color 0.3s ease;
+        }
+
+        .search-bar:focus::placeholder {
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Adjust for mobile devices */
+        @media (max-width: 768px) {
+            .search-container {
+                padding: 15px;
+            }
+
+            .search-bar {
+                font-size: 1rem;
+                padding: 10px 16px;
+            }
         }
 
         .links-grid {
