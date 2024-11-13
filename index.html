@@ -454,7 +454,7 @@
 
 
         .search-container {
-            padding: 20px;
+            padding: 10px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -466,7 +466,8 @@
             padding: 12px 20px;
             font-size: 1.1rem;
             border: 2px solid var(--secondary-color);
-            border-radius: 25px;
+            background: linear-gradient(145deg, rgba(30, 30, 30, 0.9), rgba(20, 20, 20, 0.95));
+            border-radius: 12px;
             background-color: rgba(30, 30, 30, 0.6);
             color: var(--text-primary);
             transition: all 0.3s ease;
@@ -605,7 +606,7 @@
             background: linear-gradient(145deg, rgba(30, 30, 30, 0.9), rgba(20, 20, 20, 0.95));
             border-radius: 24px;
             padding: 24px;
-            box-shadow: 
+            box-shadow:
                 0 0 40px rgba(0, 0, 0, 0.5),
                 inset 0 0 2px rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
@@ -695,16 +696,16 @@
                 border-radius: 0;
                 padding: 16px;
             }
-            
+
             .game-header {
                 border-radius: 0;
                 height: 1px;
             }
-            
+
             .game-title {
                 font-size: 1rem;
             }
-            
+
             .game-frame iframe {
                 height: calc(100% - 50px);
                 margin-top: 50px;
@@ -1257,10 +1258,12 @@
         const gameIframe = document.getElementById('gameIframe');
         const closeButton = document.querySelector('.close-button');
         const searchBar = document.querySelector('.search-bar');
-
+        const gameFrameTitle = document.querySelector('.game-frame .game-title');
+    
+        // Particles setup
         const particlesContainer = document.getElementById('particlesContainer');
         const particleCount = 20;
-
+    
         for (let i = 0; i < particleCount; i++) {
             const particle = document.createElement('div');
             particle.className = 'particle';
@@ -1269,39 +1272,25 @@
             particle.style.animationDelay = `${Math.random() * 5}s`;
             particlesContainer.appendChild(particle);
         }
-
+    
+        // Game card click handling
         gameCards.forEach(card => {
             card.addEventListener('click', () => {
                 const gameUrl = card.dataset.gameUrl;
-                const gameTitle = card.querySelector('.game-title').textContent;
-                
-                // Set the game title
-                document.querySelector('.game-title').textContent = gameTitle;
-                
+                const gameTitle = card.querySelector('.game-info .game-title').textContent;
+    
                 // Show loading state
                 gameFrame.classList.add('loading');
                 gameFrame.style.display = 'block';
                 gameFrame.offsetHeight; // Force reflow
                 gameFrame.classList.add('visible');
-                
+    
                 // Set iframe src
                 gameIframe.src = gameUrl;
                 document.body.style.overflow = 'hidden';
             });
         });
-
-        gameCards.forEach(card => {
-            card.addEventListener('click', () => {
-                const gameUrl = card.dataset.gameUrl;
-                gameIframe.src = gameUrl;
-                gameFrame.style.display = 'block';
-                // Trigger reflow to ensure the transition works
-                gameFrame.offsetHeight;
-                gameFrame.classList.add('visible');
-                document.body.style.overflow = 'hidden';
-            });
-        });
-
+    
         function closeGame() {
             gameFrame.classList.remove('visible');
             setTimeout(() => {
@@ -1311,55 +1300,95 @@
                 gameFrame.classList.remove('loading');
             }, 300);
         }
-
+    
         closeButton.addEventListener('click', closeGame);
-
+    
         gameFrame.addEventListener('click', (e) => {
             if (e.target === gameFrame) {
                 closeGame();
             }
         });
-
+    
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && gameFrame.style.display === 'block') {
                 closeGame();
             }
         });
-
+    
         gameIframe.addEventListener('load', () => {
             gameFrame.classList.remove('loading');
         });
-        
-        const particles = document.querySelector('.particles');
-        if (particles) {
-            for (let i = 0; i < 20; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 15 + 's';
-                particles.appendChild(particle);
+    
+        // Search functionality
+        searchBar.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase().trim();
+    
+            gameCards.forEach(card => {
+                const title = card.querySelector('.game-title').textContent.toLowerCase();
+                const category = card.querySelector('.game-category').textContent.toLowerCase();
+    
+                if (title.includes(searchTerm) || category.includes(searchTerm)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+    
+            // Check if no results found
+            const visibleCards = document.querySelectorAll('.game-card[style="display: block"]');
+            const noResultsMessage = document.querySelector('.no-results-message');
+    
+            if (visibleCards.length === 0 && searchTerm !== '') {
+                if (!noResultsMessage) {
+                    const message = document.createElement('div');
+                    message.className = 'no-results-message';
+                    message.style.textAlign = 'center';
+                    message.style.padding = '20px';
+                    message.style.color = 'var(--text-secondary)';
+                    message.textContent = '';
+                    document.querySelector('.game-grid').appendChild(message);
+                }
+            } else if (noResultsMessage) {
+                noResultsMessage.remove();
             }
-        }
+        });
     </script>
 </body>
 
 <script>
-    const searchInput = document.querySelector('.search-input');
-    const linkCards = document.querySelectorAll('.link-card');
+    // Add event listener for search input
+    searchBar.addEventListener('input', (e) => {
+        const searchTerm = e.target.value.toLowerCase().trim();
 
-    searchInput.addEventListener('input', (e) => {
-        const searchTerm = e.target.value.toLowerCase();
+        gameCards.forEach(card => {
+            const title = card.querySelector('.game-title').textContent.toLowerCase();
+            const category = card.querySelector('.game-category').textContent.toLowerCase();
 
-        linkCards.forEach(card => {
-            const title = card.querySelector('.link-title').textContent.toLowerCase();
-            const description = card.querySelector('.link-description').textContent.toLowerCase();
-
-            if (title.includes(searchTerm) || description.includes(searchTerm)) {
-                card.style.display = 'flex';
+            // Show card if either title or category matches search term
+            if (title.includes(searchTerm) || category.includes(searchTerm)) {
+                card.style.display = 'block';
             } else {
                 card.style.display = 'none';
             }
         });
+
+        // Check if no results found
+        const visibleCards = document.querySelectorAll('.game-card[style="display: block"]');
+        const noResultsMessage = document.querySelector('.no-results-message');
+
+        if (visibleCards.length === 0 && searchTerm !== '') {
+            if (!noResultsMessage) {
+                const message = document.createElement('div');
+                message.className = 'no-results-message';
+                message.style.textAlign = 'center';
+                message.style.padding = '20px';
+                message.style.color = 'var(--text-secondary)';
+                message.textContent = '';
+                document.querySelector('.game-grid').appendChild(message);
+            }
+        } else if (noResultsMessage) {
+            noResultsMessage.remove();
+        }
     });
 </script>
 
