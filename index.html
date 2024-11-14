@@ -616,6 +616,73 @@
             /* Added for vertical layout */
         }
 
+        .favorite-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.5);
+            border: none;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(4px);
+        }
+
+        .favorite-button:hover {
+            transform: scale(1.1);
+            background: rgba(0, 0, 0, 0.7);
+        }
+
+        .favorite-button svg {
+            width: 20px;
+            height: 20px;
+            fill: none;
+            stroke: white;
+            stroke-width: 2;
+            transition: all 0.3s ease;
+        }
+
+        .favorite-button.active svg {
+            fill: #ffd700;
+            stroke: #ffd700;
+        }
+
+        /* Add filter options */
+        .filter-options {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 10px 0;
+            padding: 0 20px;
+        }
+
+        .filter-button {
+            background: linear-gradient(145deg, rgba(30, 30, 30, 0.6), rgba(20, 20, 20, 0.7));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 8px 16px;
+            border-radius: 12px;
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .filter-button:hover {
+            background: linear-gradient(145deg, rgba(40, 40, 40, 0.7), rgba(30, 30, 30, 0.8));
+            transform: translateY(-2px);
+        }
+
+        .filter-button.active {
+            background: linear-gradient(145deg, rgba(50, 50, 50, 0.8), rgba(40, 40, 40, 0.9));
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
         .game-card {
             background: linear-gradient(145deg, rgba(30, 30, 30, 0.9), rgba(20, 20, 20, 0.95));
             border-radius: 12px;
@@ -889,6 +956,11 @@
 
     <div class="search-container">
         <input type="text" class="search-bar" placeholder="Search games or categories...">
+    </div>
+
+    <div class="filter-options">
+        <button class="filter-button active" data-filter="all">All Games</button>
+        <button class="filter-button" data-filter="favorites">Favorites</button>
     </div>
 
     <div class="game-grid">
@@ -1485,27 +1557,152 @@
                 noResultsMessage.remove();
             }
         });
+
+        class FavoritesSystem {
+            constructor() {
+                this.favorites = new Set(this.loadFavorites());
+                this.initializeFavoriteButtons();
+                this.initializeFilterButtons();
+            }
+
+            loadFavorites() {
+                return JSON.parse(localStorage.getItem('favoriteGames') || '[]');
+            }
+
+            saveFavorites() {
+                localStorage.setItem('favoriteGames', JSON.stringify([...this.favorites]));
+            }
+
+            toggleFavorite(gameUrl) {
+                if (this.favorites.has(gameUrl)) {
+                    this.favorites.delete(gameUrl);
+                } else {
+                    this.favorites.add(gameUrl);
+                }
+                this.saveFavorites();
+                this.updateUI();
+            }
+
+            createFavoriteButton() {
+                const button = document.createElement('button');
+                button.className = 'favorite-button';
+                button.innerHTML = `
+            <svg viewBox="0 0 24 24">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+            </svg>
+        `;
+                return button;
+            }
+
+            initializeFavoriteButtons() {
+                const gameCards = document.querySelectorAll('.game-card');
+                gameCards.forEach(card => {
+                    const gameUrl = card.dataset.gameUrl;
+                    const favoriteButton = this.createFavoriteButton();
+
+                    // Set initial state
+                    if (this.favorites.has(gameUrl)) {
+                        favoriteButton.classList.add('active');
+                    }
+
+                    // Add click handler
+                    favoriteButton.addEventListener('click', (e) => {
+                        e.stopPropagation(); // Prevent game from opening
+                        this.toggleFavorite(gameUrl);
+                        favoriteButton.classList.toggle('active');
+                    });
+
+                    card.appendChild(favoriteButton);
+                });
+            }
+
+            initializeFilterButtons() {
+                const filterButtons = document.querySelectorAll('.filter-button');
+                filterButtons.forEach(button => {
+                    button.addEventListener('click', () => {
+                        filterButtons.forEach(btn => btn.classList.remove('active'));
+                        button.classList.add('active');
+                        this.filterGames(button.dataset.filter);
+                    });
+                });
+            }
+
+            filterGames(filter) {
+                const gameCards = document.querySelectorAll('.game-card');
+                gameCards.forEach(card => {
+                    const gameUrl = card.dataset.gameUrl;
+                    if (filter === 'all' || (filter === 'favorites' && this.favorites.has(gameUrl))) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            }
+
+            updateUI() {
+                const activeFilter = document.querySelector('.filter-button.active').dataset.filter;
+                this.filterGames(activeFilter);
+            }
+        }
+
+        // Initialize the favorites system when the page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            window.favoritesSystem = new FavoritesSystem();
+        });
+
+        // Update search functionality to work with filters
+        const originalSearchHandler = searchBar.oninput;
+        searchBar.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase().trim();
+            const activeFilter = document.querySelector('.filter-button.active').dataset.filter;
+
+            gameCards.forEach(card => {
+                const title = card.querySelector('.game-title').textContent.toLowerCase();
+                const category = card.querySelector('.game-category').textContent.toLowerCase();
+                const gameUrl = card.dataset.gameUrl;
+
+                const matchesSearch = title.includes(searchTerm) || category.includes(searchTerm);
+                const matchesFilter = activeFilter === 'all' ||
+                    (activeFilter === 'favorites' && window.favoritesSystem.favorites.has(gameUrl));
+
+                if (matchesSearch && matchesFilter) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
     </script>
 </body>
 
 <script>
     // Add event listener for search input
+    // Update search functionality to respect current filter
     searchBar.addEventListener('input', (e) => {
         const searchTerm = e.target.value.toLowerCase().trim();
+        const activeFilter = document.querySelector('.filter-button.active').dataset.filter;
 
         gameCards.forEach(card => {
             const title = card.querySelector('.game-title').textContent.toLowerCase();
             const category = card.querySelector('.game-category').textContent.toLowerCase();
+            const gameUrl = card.dataset.gameUrl;
 
-            // Show card if either title or category matches search term
-            if (title.includes(searchTerm) || category.includes(searchTerm)) {
+            // Check if the card matches the search term
+            const matchesSearch = title.includes(searchTerm) || category.includes(searchTerm);
+
+            // Check if the card matches the current filter
+            const matchesFilter = activeFilter === 'all' ||
+                (activeFilter === 'favorites' && window.favoritesSystem.favorites.has(gameUrl));
+
+            // Only show the card if it matches both the search term and the current filter
+            if (matchesSearch && matchesFilter) {
                 card.style.display = 'block';
             } else {
                 card.style.display = 'none';
             }
         });
 
-        // Check if no results found
+        // Update no results message
         const visibleCards = document.querySelectorAll('.game-card[style="display: block"]');
         const noResultsMessage = document.querySelector('.no-results-message');
 
@@ -1516,13 +1713,16 @@
                 message.style.textAlign = 'center';
                 message.style.padding = '20px';
                 message.style.color = 'var(--text-secondary)';
-                message.textContent = '';
+                message.textContent = `No ${activeFilter === 'favorites' ? 'favorite ' : ''}games found matching "${searchTerm}"`;
                 document.querySelector('.game-grid').appendChild(message);
             }
         } else if (noResultsMessage) {
             noResultsMessage.remove();
         }
     });
+
+    // Remove the duplicate search event listener at the bottom of your HTML
+    // Delete or comment out the second searchBar.addEventListener('input', ...) block
 </script>
 
 </html>
