@@ -1,1 +1,1 @@
-https://mxplesticks.github.io/MapleHaven/
+mxplesticks.github.io
