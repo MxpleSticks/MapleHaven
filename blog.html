@@ -171,6 +171,8 @@
         }
 
         .sidebar ul li {
+            display: flex;
+            flex-direction: column;
             padding: 15px 17px;
             border-bottom: 1px solid var(--border-color);
             color: var(--text-secondary);
@@ -179,6 +181,18 @@
             position: relative;
             overflow: hidden;
             font-size: 1em;
+        }
+
+        .sidebar ul li strong {
+            color: var(--text-primary);
+            margin-bottom: 5px;
+            font-size: 1.1em;
+        }
+
+        .sidebar ul li p {
+            color: var(--text-secondary);
+            font-size: 0.9em;
+            line-height: 1.4;
         }
 
         .sidebar ul li:last-child {
@@ -274,18 +288,139 @@
             border: 1px dashed var(--border-color);
             text-align: center;
             padding: 20px;
-            margin: 20px 0;
-            color: var(--text-secondary);
+            margin: 20px 30px;
             border-radius: 10px;
+        }
+
+        .ad-placeholder-blank {
+            text-align: center;
+            padding: 20px;
+            margin: 20px 30px;
+            border-radius: 10px;
+        }
+
+        .control-center {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 64px;
+            background: linear-gradient(145deg, rgba(30, 30, 30, 0.8), rgba(20, 20, 20, 0.85));
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 24px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow:
+                0 4px 20px rgba(0, 0, 0, 0.3),
+                inset 0 0 2px rgba(255, 255, 255, 0.1);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo {
+            width: 40px;
+            height: 40px;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+        }
+
+        .logo-text {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.2rem;
+            color: var(--text-primary);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(45deg, #ffffff, #b8b8b8);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .control-button {
+            position: relative;
+            padding: 8px 16px;
+            background: linear-gradient(145deg, rgba(30, 30, 30, 0.6), rgba(20, 20, 20, 0.7));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+            display: inline-block;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            box-shadow:
+                0 2px 10px rgba(0, 0, 0, 0.2),
+                inset 0 0 2px rgba(255, 255, 255, 0.1);
+        }
+
+        .control-button:hover {
+            transform: translateY(-2px);
+            background: linear-gradient(145deg, rgba(40, 40, 40, 0.7), rgba(30, 30, 30, 0.8));
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow:
+                0 4px 15px rgba(0, 0, 0, 0.3),
+                inset 0 0 2px rgba(255, 255, 255, 0.2);
+        }
+
+        .control-button:active {
+            transform: translateY(0);
+        }
+
+        .control-buttons {
+            display: flex;
+            gap: 12px;
+        }
+
+        /* Media queries for responsive design */
+        @media (max-width: 768px) {
+            .control-center {
+                padding: 0 16px;
+                height: 56px;
+            }
+
+            .logo-text {
+                font-size: 1rem;
+            }
+
+            .control-button {
+                padding: 6px 12px;
+                font-size: 0.9rem;
+            }
+        }
+
+        a:hover::after {
+            content: none;
         }
     </style>
 </head>
 
 <body>
+
+    <div class="control-center">
+        <div class="logo-container">
+            <img src="favicon.png" class="logo" alt="">
+            <span class="logo-text">Maple Odyssey</span>
+        </div>
+        <div class="control-buttons">
+            <a href="index.html" class="control-button">Games</a>
+            <a href="proxies.html" class="control-button">Proxies</a>
+            <a href="blog.html" class="control-button">Feed</a>
+        </div>
+    </div>
+
     <div class="header container">
         <h1>Maple Odyssey</h1>
-        <p>The Ultimate Next-Generation Gaming Platform</p>
-        <a href="#" class="cta-button">Join the Revolution</a>
+        <p>Access Endless Gaming and Unrestricted Browsing</p>
+        <a href="https://discord.gg/cJUSNDzZw7" class="cta-button">Join the Discord</a>
     </div>
 
     <!-- Ad Placeholder for Top of Content -->
@@ -300,19 +435,18 @@
     <div class="container content-section">
         <div class="main-content">
             <div class="article">
-                <h2>Introducing Maple Odyssey</h2>
-                <p>Maple Odyssey represents a quantum leap in online gaming technology. We've engineered a platform that
-                    transcends traditional gaming boundaries, creating an ecosystem where performance, community, and
-                    innovation converge.</p>
+                <h2>Welcome to Maple Odyssey</h2>
+                <p>Maple Odyssey is a platform where you can immerse yourself in a variety of games while also accessing proxy links 
+                   for secure, unrestricted browsing. It’s an all-in-one experience that combines entertainment with online freedom.</p>
             </div>
 
             <div class="article">
-                <h2>Revolutionary Features</h2>
+                <h2>Key Features</h2>
                 <ul class="feature-list">
-                    <li><span>🌐</span> Seamless Cross-Platform Experience</li>
-                    <li><span>🤝</span> Global Player Networking</li>
-                    <li><span>🏆</span> Intelligent Matchmaking System</li>
-                    <li><span>💡</span> Real-Time Performance Analytics</li>
+                    <li><span>🎮</span> Instant Game Access</li>
+                    <li><span>🔗</span> Proxy Links for free Browsing</li>
+                    <li><span>💡</span> Discover New Games with Ease</li>
+                    <li><span>🌐</span> Seamless Internet Navigation</li>
                 </ul>
             </div>
 
@@ -326,52 +460,82 @@
             </div>
 
             <div class="article">
-                <h2>Advanced Gaming Infrastructure</h2>
-                <p>Our state-of-the-art infrastructure leverages cloud computing and machine learning to create adaptive
-                    gaming environments. From dynamic difficulty scaling to personalized game recommendations, Maple
-                    Odyssey transforms how players experience digital worlds.</p>
+                <h2>Gaming and Browsing Redefined</h2>
+                <p>Enjoy a diverse collection of games, available instantly without downloads. In addition, access proxy links to 
+                   browse the internet with complete freedom, ensuring your online privacy and security.</p>
             </div>
 
             <div class="article">
-                <h2>Community-Driven Development</h2>
-                <p>We believe the future of gaming is collaborative. Our platform provides developers and players with
-                    tools to co-create, mod, and expand gaming experiences. User feedback directly influences platform
-                    updates and game development cycles.</p>
+                <h2>Empowering Your Online Experience</h2>
+                <p>Maple Odyssey is designed to offer a seamless online experience, combining high-quality games with tools for 
+                   secure, unrestricted browsing. It’s a platform that prioritizes both entertainment and freedom of exploration.</p>
             </div>
 
             <div class="article">
-                <h2>Our Gaming Future</h2>
-                <p>We're not just creating a platform—we're architecting the future of digital interaction. Maple
-                    Odyssey leverages cutting-edge cloud computing and AI to deliver an unprecedented gaming experience.
-                </p>
+                <h2>Your Journey Begins Here</h2>
+                <p>Start exploring Maple Odyssey today. Whether you’re looking for your next favorite game or browsing the web 
+                   with peace of mind, we have you covered.</p>
+            </div>
+
+            
+            <div class="container ad-placeholder">
+                <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2181665924145030"
+                    data-ad-slot="3154301089" data-ad-format="auto" data-full-width-responsive="true"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
             </div>
         </div>
 
         <div class="sidebar">
             <div class="sidebar-section">
-                <h3>Quick Navigation</h3>
+                <h3>Platform Features</h3>
                 <ul>
-                    <li>Game Library</li>
-                    <li>Community Hub</li>
-                    <li>Competitive Leagues</li>
-                    <li>Player Profiles</li>
-                    <li>Support Center</li>
+                    <li>
+                        <strong>Instant Game Access</strong>
+                        <p>Play hand-picked games instantly on any device, no downloads required</p>
+                    </li>
+                    <li>
+                        <strong>Secure Proxies</strong>
+                        <p>Browse the web safely with our trusted, secure proxy links</p>
+                    </li>
+                    <li>
+                        <strong>Quality Game Selection</strong>
+                        <p>Enjoy a curated collection of top-rated games for endless fun</p>
+                    </li>
+                    <li>
+                        <strong>Privacy Focused</strong>
+                        <p>Explore the internet freely, knowing your privacy is protected</p>
+                    </li>
+                </ul>
+            </div>
+        
+            <div class="sidebar-section">
+                <h3>Upcoming Features</h3>
+                <ul>
+                    <li>
+                        <strong>Game Discovery</strong>
+                        <p>Find new, exciting games tailored to your preferences</p>
+                    </li>
+                    <li>
+                        <strong>Game Access Anywhere</strong>
+                        <p>Enjoy games without the hassle of downloads on any device</p>
+                    </li>
+                    <li>
+                        <strong>Enhanced Browsing</strong>
+                        <p>Browse securely with added proxy features for privacy</p>
+                    </li>
+                    <li>
+                        <strong>Expanded Game Library</strong>
+                        <p>Look forward to more hand-picked games being added</p>
+                    </li>
                 </ul>
             </div>
 
-            <div class="sidebar-section">
-                <h3>Upcoming Innovations</h3>
-                <ul>
-                    <li>VR Integration</li>
-                    <li>Blockchain Gaming Economy</li>
-                    <li>AI Game Coaching</li>
-                    <li>Neural Network Matchmaking</li>
-                </ul>
-            </div>
 
             <!-- Ad Placeholder for Sidebar -->
-            <div class="ad-placeholder">
-
+            <div class="ad-placeholder-blank">
+                ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ
             </div>
         </div>
     </div>
