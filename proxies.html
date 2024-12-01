@@ -908,10 +908,22 @@
                 padding: 10px 15px;
             }
         }
-    </style>
 
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2181665924145030"
-        crossorigin="anonymous"></script>
+        .ad-container {
+            background-color: rgba(50, 50, 50, 0.4);
+            border: 1px dashed rgba(255, 255, 255, 0.15);
+            text-align: center;
+            padding: 20px;
+            margin: 20px 30px;
+            border-radius: 10px;
+        }
+
+    </style>
+    <div class="ad-container" style="display:none;">
+        <script async
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2181665924145030"
+            crossorigin="anonymous"></script>
+    </div>
 
 </head>
 
@@ -925,7 +937,6 @@
         <div class="control-buttons">
             <a href="index.html" class="control-button">Games</a>
             <a href="proxies.html" class="control-button">Proxies</a>
-            <a href="blog.html" class="control-button">Feed</a>
         </div>
     </div>
 
@@ -1093,7 +1104,50 @@
 
     </div>
 
+    <div class="ad-container">
+        <script async
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2181665924145030"
+            crossorigin="anonymous"></script>
+        <!-- blog -->
+        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2181665924145030"
+            data-ad-slot="3154301089" data-ad-format="auto" data-full-width-responsive="true"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+
     <script>
+
+        window.onload = function () {
+            // Wait for the page content to load, then display the ad
+            const adContainer = document.querySelector('.ad-container');
+            adContainer.style.display = 'block'; // Ensure the ad container is visible
+
+            // Create the <ins> tag dynamically
+            const insTag = document.createElement('ins');
+            insTag.className = "adsbygoogle";
+            insTag.style.display = "block"; // Make the ad visible
+            insTag.setAttribute("data-ad-client", "ca-pub-xxxxxxxxxxxxxxxx");  // Replace with your actual client ID
+            insTag.setAttribute("data-ad-slot", "xxxxxxx"); // Replace with your ad slot ID
+
+            // Append the <ins> tag into the ad container
+            adContainer.appendChild(insTag);
+
+            // Load the AdSense script
+            const adScript = document.createElement('script');
+            adScript.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-xxxxxxxxxxxxxxxx"; // Replace with your client ID
+            adScript.async = true;
+            adScript.onload = function () {
+                // Activate the ad once the script is loaded
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            };
+
+            // Append the ad script to the body (or head) of the document
+            document.body.appendChild(adScript);
+        }
+
+
+
         // Search functionality
         const searchInput = document.getElementById('searchInput');
         const linkCards = document.querySelectorAll('.link-card');
